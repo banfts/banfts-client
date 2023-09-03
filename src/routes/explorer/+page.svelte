@@ -1,3 +1,32 @@
+<script>
+  import { goto } from '$app/navigation';
+
+  import { validateBananoAddress, validateHexHash } from '$lib/utils/validate.js';
+
+  let searchQuery;
+  let filterType;
+  let searchError = false;
+
+  function explorerSearch() {
+    //todo, error message is input is valid, or something
+    searchQuery = searchQuery.trim();
+    if (filterType === "address") {
+      if (validateBananoAddress(searchQuery)) {
+        return goto(`/explorer/address?address=${searchQuery}`);
+      }
+    } else if (filterType === "mint-hash") {
+      if (validateHexHash(searchQuery)) {
+        return goto(`/explorer/asset?mint_hash=${searchQuery}`);
+      }
+    } else if (filterType === "supply-hash") {
+      if (validateHexHash(searchQuery)) {
+        return goto(`/explorer/supply?supply_hash=${searchQuery}`);
+      }
+    }
+    searchError = true;
+  }
+</script>
+
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
   <div class="mb-2 mx-auto">
     <div class="text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -10,16 +39,17 @@
     <div class="join">
       <div>
         <div>
-          <input class="input input-bordered w-full max-w-xs join-item" placeholder="Search"/>
+          <input class="input input-bordered w-full max-w-xs join-item{ searchError ? ' input-error' : '' }" placeholder="Search" bind:value={searchQuery}/>
         </div>
       </div>
-      <select class="select select-bordered join-item">
-        <option disabled selected>Filter</option>
-        <option>Supply hash</option>
-        <option>Mint hash</option>
+      <select class="select select-bordered join-item" bind:value={filterType}>
+        <option disabled>Choose Filter</option>
+        <option value="address" selected>Address</option>
+        <option value="mint-hash">Mint Hash</option>
+        <option value="supply-hash">Supply Hash</option>
       </select>
       <div>
-        <button class="btn btn-primary join-item">Search</button>
+        <button class="btn btn-primary join-item" on:click={explorerSearch}>Search</button>
       </div>
     </div>
   </div>
