@@ -3,7 +3,7 @@
 </script>
 
 <header>
-  <div class="navbar bg-base-300 px-4">
+  <div class="navbar bg-base-300 p-4 rounded-box shadow">
     <div class="flex-1" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
       <a class="btn btn-ghost normal-case text-xl" href="/">Banfts</a>
     </div>

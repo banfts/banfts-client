@@ -1,4 +1,4 @@
-<div class="hero min-h-full bg-base-200">
+<div class="hero min-h-full bg-base-300 rounded-box shadow my-4">
   <div class="hero-content text-center">
     <div class="max-w-md">
       <h1 class="text-5xl font-bold">Banfts Marketplace</h1>
