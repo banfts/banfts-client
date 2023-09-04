@@ -1,9 +1,9 @@
-import { error } from '@sveltejs/kit';
+// import { error } from '@sveltejs/kit';
 
 import { validateHexHash } from '$lib/utils/validate.js';
 import { API_URL } from '$lib/config/constants.js';
 
-export let ssr = false;
+export const ssr = false;
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {

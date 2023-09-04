@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+// import { error } from '@sveltejs/kit';
 
 import { validateHexHash } from '$lib/utils/validate.js';
 import { API_URL } from '$lib/config/constants.js';
