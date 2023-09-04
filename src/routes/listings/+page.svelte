@@ -1,5 +1,5 @@
 <script>
-  import { API_URL } from '$lib/config/constants.js';
+  import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
   import ExternalLink from '$lib/components/ExternalLink.svelte';
   
   export let data;
@@ -73,10 +73,10 @@
           {#if info.asset_supply.nft_metadata.animation_url}
             <!-- svelte-ignore a11y-media-has-caption -->
             <video class="w-5/6" controls>
-              <source src="https://ipfs.io/ipfs/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">
+              <source src="{IPFS_GATEWAY}/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">
             </video>
           {:else}
-            <img class="w-5/6" alt="{info.asset_supply.nft_metadata.name} Image" src="https://ipfs.io/ipfs/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">
+            <img class="w-5/6" alt="{info.asset_supply.nft_metadata.name} Image" src="{IPFS_GATEWAY}/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">
           {/if}
         </div>
       </div>

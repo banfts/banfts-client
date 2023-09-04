@@ -1,4 +1,5 @@
 <script>
+  import { IPFS_GATEWAY } from '$lib/config/constants.js';
   import { accountToIpfsCid } from '$lib/utils/ipfs.js';
 
   export let listing;
@@ -7,7 +8,7 @@
   let metadata;
 
   async function getMetadata() {
-    metadata = await (await fetch(`https://ipfs.io/ipfs/${accountToIpfsCid(listing.metadata_representative)}`)).json();
+    metadata = await (await fetch(`${IPFS_GATEWAY}/${accountToIpfsCid(listing.metadata_representative)}`)).json();
   }
 
   getMetadata();
@@ -20,10 +21,10 @@
         {#if metadata.animation_url}
           <!-- svelte-ignore a11y-media-has-caption -->
           <video class="w-5/6" controls>
-            <source src="https://ipfs.io/ipfs/{metadata.image}#x-ipfs-companion-no-redirect">
+            <source src="{IPFS_GATEWAY}/{metadata.image}#x-ipfs-companion-no-redirect">
           </video>
         {:else}
-        <img class="h-full w-full object-cover object-center lg:h-full lg:w-full" src="https://ipfs.io/ipfs/{metadata.image}" alt="{metadata.name} Image" />
+        <img class="h-full w-full object-cover object-center lg:h-full lg:w-full" src="{IPFS_GATEWAY}/{metadata.image}" alt="{metadata.name} Image" />
         {/if}
       </div>
     {/if}
