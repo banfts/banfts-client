@@ -53,7 +53,9 @@
       </div>
     </div>
   </div>
+
   <div class="divider"></div> 
+
   <div class="mt-4">
     <div class="max-w-7xl sm:px-4 lg:px-8">
       <h2 class="text-xl font-bold tracking-tight text-gray-400 mb-4">Feaured</h2>

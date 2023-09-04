@@ -64,7 +64,7 @@
       <div>
         <h1 class="text-4xl">{info.asset_supply.nft_metadata.name}{#if !listing.verified}<div class="badge badge-lg badge-error gap-2 ml-2 align-middle text-stone-800 font-semibold">Unverified Listing</div>{/if}</h1>
         <div>
-          <span>Listed by <a href="/explorer/address?address={listing.account}">{listing.account.replace(listing.account.slice(10, -4), "...")}</a></span>
+          <span>Listed by <a class="link" href="/explorer/address?address={listing.account}">{listing.account.replace(listing.account.slice(10, -4), "...")}</a></span> - <a class="link" href="/explorer/supply?supply_hash={info.supply_hash}">More NFT Info</a>
         </div>
         <div>
           <span>Ask Price: </span><span class="text-yellow-200">{listing.ask_price} BAN</span>
@@ -83,7 +83,7 @@
       <div>
         <div class="mb-2">
           <h2 class="text-2xl">Buy This NFT!</h2>
-          {#if !listing.verified}
+          {#if listing.verified}
             {#if buying}
               <div class="mt-2 mb-2">
                 <p class="mb-2">To instantly buy the NFT, send <b>at least {atLeast} BAN to the escrow address ({listing.escrow_address})</b>.</p>

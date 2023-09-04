@@ -1,9 +1,9 @@
 import bananojs from '@bananocoin/bananojs';
 
-import { BANANO_PREFIx } from '$lib/config/constants.js';
+import { BANANO_PREFIX } from '$lib/config/constants.js';
 
 export function getAccount(publicKey) {
-  return bananojs.BananoUtil.getAccount(publicKey, BANANO_PREFIx);
+  return bananojs.BananoUtil.getAccount(publicKey, BANANO_PREFIX);
 }
 
 export function getAccountPublicKey(address) {

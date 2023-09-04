@@ -1,6 +1,6 @@
 import bs58 from 'bs58';
 
-import { getAccount, getAccountPublicKey, hexToBytes } from '$lib/config/constants.js';
+import { getAccount, getAccountPublicKey, hexToBytes } from '$lib/services/banano.js';
 
 const cidB58Pattern = new RegExp('^Qm[0-9A-Za-z]{0,64}$');
 const cidHexPattern = new RegExp('^1220[0-9A-Fa-f]{64}$');
