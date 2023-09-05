@@ -24,7 +24,7 @@
             <source src="{IPFS_GATEWAY}/{metadata.image}#x-ipfs-companion-no-redirect">
           </video>
         {:else}
-        <img class="h-full w-full object-cover object-center lg:h-full lg:w-full" src="{IPFS_GATEWAY}/{metadata.image}" alt="{metadata.name} Image" />
+          <img class="h-full w-full object-cover object-center lg:h-full lg:w-full" src="{IPFS_GATEWAY}/{metadata.image}" alt="{metadata.name} Image" />
         {/if}
       </div>
     {/if}
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="card-actions justify-end">
-          <a href="/listings?mint_hash={listing.mint_hash}" class="btn btn-primary btn-sm btn-block">Buy</a>
+          <a href="/market/listings?mint_hash={listing.mint_hash}" class="btn btn-primary btn-sm btn-block">Buy</a>
         </div>
       {:else}
         <div class="flex justify-center">

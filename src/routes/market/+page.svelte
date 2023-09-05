@@ -1,9 +1,12 @@
 <script>
   import { API_URL, PER_PAGE } from '$lib/config/constants.js';
   import ListingCard from '$lib/components/ListingCard.svelte';
-  import { usdPerBanano } from '$lib/services/price.js';
+  import { usdPerBanano, get_price } from '$lib/services/price.js';
 
   export let data;
+
+  // Call to super duper make sure the price is fetched, sometimes with weird svelte navigations it isn't
+  get_price();
 
   let listings = data.listings;
   let noPageAfter = false;

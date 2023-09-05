@@ -1,8 +1,13 @@
 <script>
   import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
+  import { usdPerBanano, get_price } from '$lib/services/price.js';
+
   import ExternalLink from '$lib/components/ExternalLink.svelte';
   
   export let data;
+
+  // Call to super duper make sure the price is fetched, sometimes with weird svelte navigations it isn't
+  get_price();
 
   let info = data.info;
   let listing = data.listing;
@@ -68,6 +73,8 @@
         </div>
         <div>
           <span>Ask Price: </span><span class="text-yellow-200">{listing.ask_price} BAN</span>
+          -
+          <span class="text-end text-yellow-200">${Math.floor(usdPerBanano*listing.ask_price*100)/100}~ USD</span>
         </div>
         <div class="h-full pt-5">
           {#if info.asset_supply.nft_metadata.animation_url}
@@ -124,7 +131,7 @@
             {#each Object.keys(offers) as offerror}
               <div class="card bg-base-100 rounded-box shadow mr-5 min-w-fit">
                 <div class="card-body">
-                  <p>{offerror} offers {offers[offerror]} BAN</p>
+                  <p><a class="link" href="/explorer/address?address={listing.account}">{offerror.replace(offerror.slice(10, -4), "...")}</a> offers {offers[offerror]} BAN</p>
                   <!-- TODO, only show if owner -->
                   <button class="btn btn-neutral">Accept Offer</button>
                 </div>
