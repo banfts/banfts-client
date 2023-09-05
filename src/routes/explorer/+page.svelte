@@ -16,7 +16,7 @@
       }
     } else if (filterType === "mint-hash") {
       if (validateHexHash(searchQuery)) {
-        return goto(`/explorer/asset?mint_hash=${searchQuery}`);
+        return goto(`/explorer/assets?mint_hash=${searchQuery}`);
       }
     } else if (filterType === "supply-hash") {
       if (validateHexHash(searchQuery)) {
