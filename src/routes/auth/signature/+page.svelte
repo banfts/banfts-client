@@ -34,7 +34,7 @@
 </script>
 
 <div class="flex flex-grow my-4">
-  <div class="hero min-h-screen bg-base-300">
+  <div class="hero min-h-full bg-base-300 rounded-box shadow">
     <div class="hero-content flex-col lg:flex-row-reverse">
       <div class="text-center lg:text-left">
         <h1 class="text-5xl font-bold">Authenticate to Banfts!</h1>
