@@ -1,7 +1,9 @@
 // import { error } from '@sveltejs/kit';
 
-import { validateHexHash } from '$lib/utils/validate.js';
 import { API_URL } from '$lib/config/constants.js';
+
+import { accountToIpfsCid } from '$lib/utils/ipfs.js';
+import { validateHexHash } from '$lib/utils/validate.js';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
@@ -21,9 +23,30 @@ export async function load({ url, fetch }) {
       message: resp.message,
     };
   }
+
+  const metadataRepresentativeIpfsCid = accountToIpfsCid(resp.assets.asset.metadata_representative)
+
+  let metadataRepresentativeData = {}
+  if (metadataRepresentativeIpfsCid) {
+
+    const metadataResponse = await (await fetch(`https://ipfs.io/ipfs/${metadataRepresentativeIpfsCid}`)).json();
+    console.log(metadataResponse.image)
+    if (!metadataResponse) {
+      return {
+        mint_hash: mintHash,
+        found: false,
+        message: 'Metadata representative not found',
+      };
+    }
+    metadataRepresentativeData = { ...metadataResponse }
+
+  }
+  //console.log(metadataRepresentativeIpfsCid)
   return {
     mint_hash: mintHash,
+    asset_representative: resp.assets.assetRep,
     found: true,
-    info: resp.assets, //just returns a singular asset, to be clear
+    asset: resp.assets.asset, //just returns a singular asset, to be clear
+    asset_metadata: {...metadataRepresentativeData, ... { image_url: `https://ipfs.io/ipfs/${metadataRepresentativeData.image}` }}
   };
 }

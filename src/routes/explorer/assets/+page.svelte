@@ -1,7 +1,7 @@
 <script>
-  export let data;
+  import Mint from '$lib/components/assets/Mint.svelte';
 
-  console.log(data);
+  export let data;
 </script>
 
-<pre>{JSON.stringify(data, null, 2)}</pre>
+<Mint mintData={data}></Mint>
