@@ -2,6 +2,8 @@
 import { API_URL } from '$lib/config/constants.js';
 import { validateHexHash } from '$lib/utils/validate.js';
 
+export const ssr = false;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
   const mintHash = url.searchParams.get("mint_hash");

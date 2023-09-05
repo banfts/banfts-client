@@ -59,8 +59,8 @@
           <p class="text-gray-300 truncate">{mintData.asset.mint_hash}</p>
           <span class="text-gray-500 text-xs">Owner</span>
           <p class="text-gray-300 truncate">{mintData.asset.owner}</p>
-          <span class="text-gray-500 text-xs">Metadata Representative</span>
-          <p class="text-gray-300 truncate">{mintData.asset.metadata_representative}</p>
+          <span class="text-gray-500 text-xs">Asset Representative</span>
+          <p class="text-gray-300 truncate">{mintData.asset_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
           <p class="text-gray-300 truncate">{mintData.asset_metadata.properties.issuer}</p>
           <span class="text-gray-500 text-xs">Lock status</span>
@@ -86,7 +86,7 @@
               </code>
             </div>
           </div>
-          <p class="text-xs text-gray-500 mt-2">Due to the current limitations of the Banano NFT protocol the information displayed here may not be up to date.</p>
+          <p class="text-xs text-gray-500 mt-2">Due to the NFT node needing some time to update, the information displayed here may not be up to date.</p>
         </div>
       </div>
     </div>

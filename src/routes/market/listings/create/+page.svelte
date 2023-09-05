@@ -29,16 +29,10 @@
   let countdownMinute, countdownSecond;
 
   async function createListing() {
-    if (isNaN(Number(askPrice))) {
+    if (isNaN(Number(askPrice)) || String(askPrice).split(".")[1]?.length > 2 || Number(askPrice) < 19) {
       searchError = true;
-      return;
-    }
-    if (String(askPrice).split(".")[1]?.length > 2) {
-      searchError = true;
-      return;
-    }
-    if (Number(askPrice) < 19) {
-      searchError = true;
+      // Terrible code
+      setTimeout(() => window.location.reload(), 1500);
       return;
     }
 
@@ -58,6 +52,8 @@
       errorMessageCreate = resp.message;
       return;
     }
+
+    console.log(resp)
 
     escrowAddress = resp.escrow_address;
 
@@ -86,6 +82,29 @@
       countdownMinute.style.setProperty('--value', String(newMinute));
     }, 1000);
   }
+
+  let verified = false;
+
+  async function checkStatus() {
+    try {
+      // Try and manually trigger a verification
+      await fetch(`https://api.banfts.com/api/v1/market/listings/${data.mint_hash}/verify`, { 
+        credentials: 'include',
+        method: 'POST',
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    const resp = await (await fetch(`https://api.banfts.com/api/v1/market/listings/${data.mint_hash}`, { credentials: 'include' })).json();
+    if (resp.success) {
+      if (resp.market.listing?.verified) {
+        verified = true;
+        // Stop the count
+        countdownSecond.style.setProperty('--value', "0");
+        countdownMinute.style.setProperty('--value', "0");
+      }
+    }
+  }
 </script>
 
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
@@ -106,6 +125,14 @@
             <span bind:this={countdownMinute} style="--value:05;"></span>:
             <span bind:this={countdownSecond} style="--value:00;"></span>
           </span>
+          {#if verified}
+            <div class="alert alert-success">
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span>Listing has been verified, view it <a class="link" href="/market/listings?mint_hash={data.mint_hash}">here</a></span>
+            </div>
+          {/if}
+          <br>
+          <button class="btn btn-primary" on:click={checkStatus}>Check Status</button>
         </div>
       {:else}
         <div>
