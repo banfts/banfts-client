@@ -95,6 +95,7 @@
     } catch (e) {
       console.log(e);
     }
+
     const resp = await (await fetch(`https://api.banfts.com/api/v1/market/listings/${data.mint_hash}`, { credentials: 'include' })).json();
     if (resp.success) {
       if (resp.market.listing?.verified) {
@@ -116,7 +117,7 @@
       {#if createMode}
         <div>
           <h2>Sending Instructions</h2>
-          <p class="mb-2">First, change your representative to <b>{data.info.assetRep}</b>. Then, send a 0.01 (or more) Banano transaction to <b>{escrowAddress}</b>. This will send your NFT to the escrow address.</p>
+          <p class="mb-2">First, receive all pending transactions. Second, change your representative to <b>{data.info.assetRep}</b>. Then, send a 0.01 (or more) Banano transaction to <b>{escrowAddress}</b>. This will send your NFT to the escrow address.</p>
           <p class="mb-2">If you use the Bananostand wallet, <ExternalLink url="https://thebananostand.com/?request=change&address={data.info.assetRep}" content="to change your representative"/>, and <ExternalLink url="https://thebananostand.com?request=send&address={escrowAddress}&amount=.01" content="to send the NFT to the escrow address"/>.</p>
           <p class="mb-2">If, after 5 minutes, the listing is not marked as verified (check the <a class="link" href="/market/listings?={data.mint_hash}">listing page</a>), but you have sent the NFT, please contact support at our Discord server. Please also contact support if you have not sent the NFT, but the listing is not deleted after 5 minutes, preventing you from listing again.</p>
           <p class="mb-2">The listing will be automatically marked as verified once you send. <b>Please send within 5 minutes, or the listing will be cancelled.</b> After you have sent the NFT, you may change your representative back to your original representative.</p>

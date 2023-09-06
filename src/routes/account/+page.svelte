@@ -70,7 +70,7 @@
             <h3 class="font-medium text-gray-400 mb-2">Details</h3>
             <span class="text-gray-500 text-xs">Registered</span>
             <p class="text-gray-300 truncate">{data.account.registered ? 'Yes' : 'No'}</p>
-            <span class="text-gray-500 text-xs">Registeration Date</span>
+            <span class="text-gray-500 text-xs">Registration Date</span>
             <p class="text-gray-300 truncate">{data.account.registered_timestamp ? new Date(Number(data.account.registered_timestamp)) : 'Unregistered'}</p>
             <span class="text-gray-500 text-xs">Total Trades</span>
             <p class="text-gray-300 truncate"><!--{data.account.trades.length}-->Coming soon tm</p>

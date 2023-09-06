@@ -18,7 +18,7 @@
 </p>
 
 <p class="my-4">
-  At the time of writing, only the Bananostand wallet supports message signing. So, you will have to first go to <ExternalLink url="https://bananostand.com" content="https://bananostand.com"/>, and import in your seed - or create a new one (if so, make sure to write down your seed, otherwise you may lose your funds, and NFTs, if you lose the seed).
+  At the time of writing, only the Bananostand wallet supports message signing. So, you will have to first go to <ExternalLink url="https://thebananostand.com" content="https://thebananostand.com"/>, and import in your seed - or create a new one (if so, make sure to write down your seed, otherwise you may lose your funds, and NFTs, if you lose the seed).
 </p>
 
 <p class="my-4">
