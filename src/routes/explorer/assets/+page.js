@@ -5,6 +5,8 @@ import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
 import { accountToIpfsCid } from '$lib/utils/ipfs.js';
 import { validateHexHash } from '$lib/utils/validate.js';
 
+export const ssr = false;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
   const mintHash = url.searchParams.get("mint_hash");
@@ -15,6 +17,7 @@ export async function load({ url, fetch }) {
       message: 'Invalid mint hash',
     };
   }
+
   const resp = await (await fetch(`${API_URL}/assets/${mintHash}`)).json();
   if (!resp.success) {
     return {
@@ -28,7 +31,6 @@ export async function load({ url, fetch }) {
 
   let metadataRepresentativeData = {}
   if (metadataRepresentativeIpfsCid) {
-
     const metadataResponse = await (await fetch(`https://ipfs.io/ipfs/${metadataRepresentativeIpfsCid}`)).json();
     console.log(metadataResponse.image)
     if (!metadataResponse) {
@@ -41,6 +43,7 @@ export async function load({ url, fetch }) {
     metadataRepresentativeData = { ...metadataResponse }
 
   }
+
   //console.log(metadataRepresentativeIpfsCid)
   return {
     mint_hash: mintHash,
