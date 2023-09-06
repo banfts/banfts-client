@@ -30,7 +30,7 @@
     {/if}
     <div class="card-body">
       {#if metadata}
-        <h2 class="card-title">{metadata.name}</h2>
+        <h2 class="card-title"><a class="link" href="/explorer/assets?mint_hash={mintedNft.mint_hash}">{metadata.name}</a></h2>
         <div class="card-actions justify-end">
           {#if owned}
             <a href="/market/listings/create?mint_hash={mintedNft.mint_hash}" class="btn btn-primary btn-sm btn-block">Create Listing</a>
