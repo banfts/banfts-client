@@ -4,4 +4,8 @@
   export let data;
 </script>
 
-<Mint mintData={data}></Mint>
+{#if data.found}
+  <Mint mintData={data}></Mint>
+{:else}
+  <p><span class="text-red-500">Error:</span> {data.message}</p>
+{/if}

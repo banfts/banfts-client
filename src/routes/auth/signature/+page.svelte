@@ -2,6 +2,7 @@
   import { goto } from '$app/navigation';
   import { API_URL } from '$lib/config/constants.js';
   import ExternalLink from '$lib/components/ExternalLink.svelte';
+  import { sessionAddress, loginTimestamp } from '$lib/services/stores.js';
 
   let signedMessage = "message-banfts-auth-"+Date.now();
 
@@ -26,7 +27,9 @@
     })).json();
 
     if (resp.success) {
-      await goto("/market?login=true");
+      $sessionAddress = address;
+      $loginTimestamp = Date.now();
+      await goto("/account?address="+address);
     } else {
       loginError = true;
     }
@@ -53,8 +56,8 @@
               <span class="label-text">Signature</span>
             </label>
             <input id="signature" type="text" bind:value={signature} placeholder="Signature here..." class="input input-bordered{ loginError ? ' input-error' : '' }" />
-            <label class="label">
-              <a href="#" class="label-text-alt link link-hover">Not sure how to sign a message?</a>
+            <label class="label" for="signature">
+              <a href="/help/message-signing" class="label-text-alt link link-hover">Not sure how to sign a message?</a>
             </label>
           </div>
           <div class="form-control mt-6">

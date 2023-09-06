@@ -65,6 +65,7 @@ export function accountToIpfsCid(ipfsAccount) {
 
     return ipfsCid;
   } catch (error) {
+    console.log(error);
     return false;
   }
 }

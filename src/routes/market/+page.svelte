@@ -11,8 +11,17 @@
   let listings = data.listings;
   let noPageAfter = false;
 
-  let searchQuery;
+  let searchQuery = data.query.seller || data.query.supplyHash || data.query.maxAskPrice || "";
   let filterType;
+
+  if (data.query.seller) {
+    filterType = "seller";
+  } else if (data.query.supplyHash) {
+    filterType = "supply-hash";
+  } else if (data.query.maxAskPrice) {
+    filterType = "max-ask-price";
+  }
+
   let searchError = false;
   let pageNum = 1;
 
@@ -37,6 +46,10 @@
       listings = resp.listings;
       noPageAfter = resp.no_page_after;
     }
+  }
+
+  if (searchQuery) {
+    marketSearch();
   }
 
   async function pageChange(inc) {
@@ -76,7 +89,7 @@
       </div>
       <select class="select select-bordered join-item" bind:value={filterType}>
         <option disabled>Choose Filter</option>
-        <option value="max-ask-price" selected>Max Ask Price</option>
+        <option value="max-ask-price">Max Ask Price</option>
         <option value="supply-hash">Supply Hash</option>
         <option value="seller">Seller</option>
       </select>

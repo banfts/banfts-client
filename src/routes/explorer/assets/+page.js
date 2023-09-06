@@ -1,6 +1,6 @@
 // import { error } from '@sveltejs/kit';
 
-import { API_URL } from '$lib/config/constants.js';
+import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
 
 import { accountToIpfsCid } from '$lib/utils/ipfs.js';
 import { validateHexHash } from '$lib/utils/validate.js';
@@ -47,6 +47,6 @@ export async function load({ url, fetch }) {
     asset_representative: resp.assets.assetRep,
     found: true,
     asset: resp.assets.asset, //just returns a singular asset, to be clear
-    asset_metadata: {...metadataRepresentativeData, ... { image_url: `https://ipfs.io/ipfs/${metadataRepresentativeData.image}` }}
+    asset_metadata: {...metadataRepresentativeData, ... { image_url: `${IPFS_GATEWAY}/${metadataRepresentativeData.image}` }}
   };
 }

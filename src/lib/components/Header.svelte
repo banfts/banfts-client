@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+  import { sessionAddress } from '$lib/services/stores.js';
 </script>
 
 <header>
@@ -53,7 +54,7 @@
             </label>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
-                <a class="justify-between" href="/account">
+                <a class="justify-between" href="/account?address={$sessionAddress}">
                   Account
                   <span class="badge">New</span>
                 </a>

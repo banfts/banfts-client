@@ -2,13 +2,13 @@
   import { IPFS_GATEWAY } from '$lib/config/constants.js';
   import { accountToIpfsCid } from '$lib/utils/ipfs.js';
 
-  export let listing;
-  export let usdPerBanano;
+  export let mintedNft;
+  export let owned;
 
   let metadata;
 
   async function getMetadata() {
-    metadata = await (await fetch(`${IPFS_GATEWAY}/${accountToIpfsCid(listing.metadata_representative)}`)).json();
+    metadata = await (await fetch(`${IPFS_GATEWAY}/${accountToIpfsCid(mintedNft.metadata_representative)}`)).json();
   }
 
   getMetadata();
@@ -31,17 +31,12 @@
     <div class="card-body">
       {#if metadata}
         <h2 class="card-title">{metadata.name}</h2>
-        <div class="flex flex-col my-2">
-          <div class="flex justify-between">
-            <h3 class="text-sm text-gray-400">Ask Price</h3>
-            <p class="text-end text-yellow-200 font-bold">{listing.ask_price} BAN</p>
-          </div>
-          <div class="flex justify-between">
-            <p class="text-xs text-end text-yellow-200">${Math.floor(usdPerBanano*listing.ask_price*100)/100}~ USD</p>
-          </div>
-        </div>
         <div class="card-actions justify-end">
-          <a href="/market/listings?mint_hash={listing.mint_hash}" class="btn btn-primary btn-sm btn-block">Buy</a>
+          {#if owned}
+            <a href="/market/listings/create?mint_hash={mintedNft.mint_hash}" class="btn btn-primary btn-sm btn-block">Create Listing</a>
+          {:else}
+            <a href="/market/listings/create?mint_hash={mintedNft.mint_hash}" class="btn btn-primary btn-sm btn-block" disabled>Create Listing</a>
+          {/if}
         </div>
       {:else}
         <div class="flex justify-center">

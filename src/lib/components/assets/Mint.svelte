@@ -1,6 +1,8 @@
 <script>
 	import { page } from '$app/stores';
 
+  import { IPFS_GATEWAY } from '$lib/config/constants.js';
+
   export let mintData;
 </script>
 
@@ -34,7 +36,14 @@
   <div class="pt-4 lg:pt-8">
     <div class="mx-auto max-w-4xl px-4 sm:px-4 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8">
       <div class="aspect-h-1 aspect-w-1 lg:aspect-h-1 lg:aspect-w-1 overflow-hidden rounded">
-        <img src="{mintData.asset_metadata.image_url}" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+        {#if mintData.asset_metadata.animation_url}
+          <!-- svelte-ignore a11y-media-has-caption -->
+          <video class="h-full w-full object-cover object-center" controls>
+            <source src="{IPFS_GATEWAY}/{mintData.asset_metadata.animation_url}#x-ipfs-companion-no-redirect">
+          </video>
+        {:else}
+          <img src="{mintData.asset_metadata.image_url}" alt="NFT" class="h-full w-full object-cover object-center">
+        {/if}
       </div>
 
       <div class="mt-4 lg:row-span-1 lg:mt-0">
@@ -49,12 +58,12 @@
         </div>
 
         <div class="mt-8">
-          <a class="btn btn-primary btn-block" href="/market">Find in the Marketplace</a>
+          <a class="btn btn-primary btn-block" href="/market/listings?mint_hash={mintData.mint_hash}">Find in the Marketplace</a>
         </div>
         <div class="mt-8">
           <h3 class="font-medium text-gray-400 mb-2">Details</h3>
           <span class="text-gray-500 text-xs">Supply Hash</span>
-          <p class="text-gray-300 truncate">{mintData.asset.supply_hash}</p>
+          <p class="text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={mintData.asset.supply_hash}">{mintData.asset.supply_hash}</a></p>
           <span class="text-gray-500 text-xs">Mint Hash</span>
           <p class="text-gray-300 truncate">{mintData.asset.mint_hash}</p>
           <span class="text-gray-500 text-xs">Owner</span>

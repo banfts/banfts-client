@@ -1,7 +1,13 @@
 <script>
+  import Supply from '$lib/components/assets/Supply.svelte';
+
   export let data;
 
   console.log(data);
 </script>
 
-<pre>{JSON.stringify(data, null, 2)}</pre>
+{#if data.found}
+  <Supply supplyInfo={data.info}></Supply>
+{:else}
+  <p><span class="text-red-500">Error:</span> {data.message}</p>
+{/if}

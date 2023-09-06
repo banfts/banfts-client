@@ -58,12 +58,12 @@
 
   <div class="mt-4">
     <div class="max-w-7xl sm:px-4 lg:px-8">
-      <h2 class="text-xl font-bold tracking-tight text-gray-400 mb-4">Feaured</h2>
+      <h2 class="text-xl font-bold tracking-tight text-gray-400 mb-4">Featured</h2>
     </div>
   </div>
   <div class="max-w-full px-4 pb-4 sm:px-6 lg:px-8">
+    <!--
     <div class="my-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      
       <div class="group">
         <div class="card card-compact w-100 bg-base-100 shadow-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
@@ -86,7 +86,8 @@
           </div>
         </div>
       </div>
-
     </div>
+    -->
+    <p>For now, check out the <a class="link" href="/market">Marketplace</a>, or <a class="link" href="/explorer/address?address=ban_1o7ija3mdbmpzt8qfnck583tn99fiupgbyzxtbk5h4g6j57a7rawge6yzxqp">an address with a lot of NFTs</a>.</p>
   </div>
 </div>
