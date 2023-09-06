@@ -3,6 +3,8 @@ import { error } from '@sveltejs/kit';
 import { validateHexHash } from '$lib/utils/validate.js';
 import { API_URL } from '$lib/config/constants.js';
 
+export const ssr = false;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
   const supplyHash = url.searchParams.get("supply_hash");
@@ -13,6 +15,7 @@ export async function load({ url, fetch }) {
       message: 'Invalid supply hash',
     };
   }
+
   const resp = await (await fetch(`${API_URL}/assets/supply/${supplyHash}`)).json();
   if (!resp.success) {
     return {
@@ -21,6 +24,7 @@ export async function load({ url, fetch }) {
       message: resp.message,
     };
   }
+
   return {
     supply_hash: supplyHash,
     found: true,

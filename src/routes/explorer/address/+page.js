@@ -3,9 +3,12 @@ import { error } from '@sveltejs/kit';
 import { validateBananoAddress } from '$lib/utils/validate.js';
 import { API_URL } from '$lib/config/constants.js';
 
+export const ssr = false;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
   const address = url.searchParams.get("address");
+
   if (!validateBananoAddress(address)) {
     return {
       address,
@@ -13,6 +16,7 @@ export async function load({ url, fetch }) {
       message: 'Invalid Banano address',
     };
   }
+
   const resp = await (await fetch(`${API_URL}/account/${address}/assets`)).json();
   if (!resp.success) {
     return {
@@ -21,6 +25,7 @@ export async function load({ url, fetch }) {
       message: resp.message,
     };
   }
+
   return {
     address,
     found: true,
