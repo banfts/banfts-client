@@ -12,6 +12,14 @@
   let loginError = false;
 
   async function signatureLogin() {
+    if (address) {
+      address = address.trim();
+    }
+
+    if (signature) {
+      signature = signature.trim();
+    }
+
     const resp = await (await fetch(`${API_URL}/auth/signature`, {
       method: 'POST',
       credentials: 'include',
