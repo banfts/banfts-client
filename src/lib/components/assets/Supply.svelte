@@ -1,9 +1,30 @@
 <script>
 	import { page } from '$app/stores';
 
+  //import OwnedMintedCard from '$lib/components/OwnedMintedCard.svelte';
   import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
 
   export let supplyInfo;
+
+  let pageNum = 1;
+
+  let minted = [];
+
+  async function getMinted() {
+    minted = (await (await fetch(`${API_URL}/assets/supply/${supplyInfo.supply_hash}/assets?page_num=${pageNum}&per_page=8`)).json()).assets.minted;
+  }
+
+  function nextPage() {
+    pageNum++;
+    getMinted();
+  }
+
+  function prevPage() {
+    pageNum--;
+    getMinted();
+  }
+
+  getMinted();
 </script>
 
 <div class="flex flex-col min-h-full bg-base-300 rounded-box shadow mt-4">
@@ -65,7 +86,7 @@
           <span class="text-gray-500 text-xs">Metadata Representative</span>
           <p class="text-gray-300 truncate">{supplyInfo.asset_supply.metadata_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
-          <p class="text-gray-300 truncate">{supplyInfo.asset_supply.minter_address}</p>
+          <p class="text-gray-300 truncate"><a class="link" href="/explorer/minters?address={supplyInfo.asset_supply.minter_address}">{supplyInfo.asset_supply.minter_address}</a></p>
           <span class="text-gray-500 text-xs">Max Supply</span>
           <p class="text-gray-300">{ supplyInfo.asset_supply.max_supply === 0 ? "No Limit" : supplyInfo.asset_supply.max_supply }</p>
           <span class="text-gray-500 text-xs">Total Minted</span>
@@ -76,12 +97,42 @@
           <p class="text-gray-300">{ supplyInfo.asset_supply.nft_metadata.external_url ? supplyInfo.asset_supply.nft_metadata.external_url : "None" }</p>
         </div>
       </div>
-
-      <div class="my-4">
-        <h2 class="text-xl">Minted NFTs for Supply</h2>
-        <a class="link" href="{API_URL}/assets/supply/{supplyInfo.supply_hash}/assets?page_num=1">See here.</a>
-      </div>
     </div>
+  </div>
+</div>
+
+<div class="bg-base-300 rounded-box shadow p-4 my-4">
+  <h2 class="text-2xl text-center">Minted</h2>
+  <div class="my-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    {#each minted as mint}
+      <div class="group">
+        <div class="card card-compact w-100 bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title"><a class="link" href="/explorer/assets?mint_hash={mint.mint_hash}">{supplyInfo.asset_supply.nft_metadata.name}</a></h2>
+            <div class="flex">
+              <h3 class="text-sm text-gray-400">Owner</h3>
+              <p class="text-end"><a class="link" href="/explorer/addresses?address={mint.owner}">{mint.owner.replace(mint.owner.slice(10, -4), "...")}</a></p>
+            </div>
+            <div class="card-actions justify-end">
+              <a href="/market/listings?mint_hash={mint.mint_hash}" class="btn btn-primary btn-sm btn-block">See Listing (If Exists)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {/each}
+  </div>
+  
+  <div class="flex justify-center gap-2 mb-4">
+    <button class="btn btn-square btn-outline" on:click={prevPage} disabled={ pageNum === 1 }>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <button class="btn btn-square btn-outline" on:click={nextPage} disabled={ minted.length !== 8 }> <!--todo: fix the disabled here-->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
   </div>
 </div>
 

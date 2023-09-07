@@ -1,46 +1,47 @@
 // import { error } from '@sveltejs/kit';
 
 import { API_URL } from '$lib/config/constants.js';
-
+import { get } from 'svelte/store';
 import { verifyAddress, getAccountInfo } from '$lib/services/banano.js';
+import { sessionAddress } from '$lib/services/stores.js';
 
 export const ssr = false;
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
-  const queryAddress = url.searchParams.get("address");
+  const address = get(sessionAddress);
 
-  const queryAddressValid = verifyAddress(queryAddress, true)
-  if (!queryAddressValid) {
+  const addressValid = verifyAddress(address, true)
+  if (!addressValid) {
     return {
-      accountAddress: queryAddress,
+      accountAddress: address,
       success: false,
-      message: queryAddressValid.message,
+      message: addressValid.message,
     };
   }
 
-  const getAccountNodeResponse = await getAccountInfo(queryAddress); // <-- The culprit
+  const getAccountNodeResponse = await getAccountInfo(address); // <-- The culprit
   if (Number(getAccountNodeResponse.block_count) === 0) {
     return {
-      accountAddress: queryAddress,
+      accountAddress: address,
       success: false,
       message: 'Unopened account',
     };
   }
 
-  const getAccountResponse = await (await fetch(`${API_URL}/account/${queryAddress}`)).json();
+  const getAccountResponse = await (await fetch(`${API_URL}/account/${address}`)).json();
   if (!getAccountResponse.success) {
     return {
-      accountAddress: queryAddress,
+      accountAddress: address,
       success: false,
       message: getAccountResponse.message,
     };
   }
 
-  const getAccountAssetsResponse = await (await fetch(`${API_URL}/account/${queryAddress}/assets`)).json();
+  const getAccountAssetsResponse = await (await fetch(`${API_URL}/account/${address}/assets`)).json();
   if (!getAccountAssetsResponse.success) {
     return {
-      accountAddress: queryAddress,
+      accountAddress: address,
       success: false,
       message: getAccountAssetsResponse.message,
     };

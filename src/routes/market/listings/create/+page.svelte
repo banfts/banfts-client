@@ -116,7 +116,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       {#if createMode}
         <div>
-          <h2>Sending Instructions</h2>
+          <h2 class="text-2xl">Sending Instructions</h2>
           <p class="mb-2">First, receive all pending transactions. Second, change your representative to <b>{data.info.assetRep}</b>. Then, send a 0.01 (or more) Banano transaction to <b>{escrowAddress}</b>. This will send your NFT to the escrow address.</p>
           <p class="mb-2">If you use the Bananostand wallet, <ExternalLink url="https://thebananostand.com/?request=change&address={data.info.assetRep}" content="to change your representative"/>, and <ExternalLink url="https://thebananostand.com?request=send&address={escrowAddress}&amount=.01" content="to send the NFT to the escrow address"/>.</p>
           <p class="mb-2">If, after 5 minutes, the listing is not marked as verified (check the <a class="link" href="/market/listings?={data.mint_hash}">listing page</a>), but you have sent the NFT, please contact support at our Discord server. Please also contact support if you have not sent the NFT, but the listing is not deleted after 5 minutes, preventing you from listing again.</p>
