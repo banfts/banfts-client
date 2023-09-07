@@ -71,7 +71,7 @@
           <span class="text-gray-500 text-xs">Asset Representative</span>
           <p class="text-gray-300 truncate">{mintData.asset_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
-          <p class="text-gray-300 truncate">{mintData.asset_metadata.properties.issuer}</p>
+          <p class="text-gray-300 truncate"><a class="link" href="/explorer/minters?address={mintData.asset_metadata.properties.issuer}">{mintData.asset_metadata.properties.issuer}</a></p>
           <span class="text-gray-500 text-xs">Lock status</span>
           <p class="text-gray-300 truncate">{mintData.asset.locked ? 'Locked' : 'Unlocked'}</p>
         </div>

@@ -36,3 +36,11 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Contributing
+
+Please make sure to test any PRs - and also run `npm run build` to make sure the site will be able to be built and deployed. Since the client is meant to deployed as a static site, some Sveltekit features, namely anything requiring a server, obviously will not be able to be used.
+
+(todo: write this section)
+
+(todo: write something about issues)
