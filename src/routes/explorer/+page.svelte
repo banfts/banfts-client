@@ -12,7 +12,7 @@
     searchQuery = searchQuery.trim();
     if (filterType === "address") {
       if (validateBananoAddress(searchQuery)) {
-        return goto(`/explorer/address?address=${searchQuery}`);
+        return goto(`/explorer/addresses?address=${searchQuery}`);
       }
     } else if (filterType === "mint-hash") {
       if (validateHexHash(searchQuery)) {
@@ -21,6 +21,10 @@
     } else if (filterType === "supply-hash") {
       if (validateHexHash(searchQuery)) {
         return goto(`/explorer/supply?supply_hash=${searchQuery}`);
+      }
+    } else if (filterType === "minter-address") {
+      if (validateBananoAddress(searchQuery)) {
+        return goto(`/explorer/minters?address=${searchQuery}`);
       }
     }
     searchError = true;
@@ -47,6 +51,7 @@
         <option value="address" selected>Address</option>
         <option value="mint-hash">Mint Hash</option>
         <option value="supply-hash">Supply Hash</option>
+        <option value="minter-address">Minter Address</option>
       </select>
       <div>
         <button class="btn btn-primary join-item" on:click={explorerSearch}>Search</button>
@@ -88,6 +93,6 @@
       </div>
     </div>
     -->
-    <p>For now, check out the <a class="link" href="/market">Marketplace</a>, or <a class="link" href="/explorer/address?address=ban_1o7ija3mdbmpzt8qfnck583tn99fiupgbyzxtbk5h4g6j57a7rawge6yzxqp">an address with a lot of NFTs</a>.</p>
+    <p>For now, check out the <a class="link" href="/market">Marketplace</a>, or <a class="link" href="/explorer/addresses?address=ban_1o7ija3mdbmpzt8qfnck583tn99fiupgbyzxtbk5h4g6j57a7rawge6yzxqp">an address with a lot of NFTs</a>.</p>
   </div>
 </div>
