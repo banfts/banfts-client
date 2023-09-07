@@ -1,6 +1,11 @@
-import { expect, test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible();
+test('get started link', async ({ page }) => {
+  await page.goto('https://banfts.com/');
+
+  // Click the Auth with signature link.
+  await page.getByText('Auth with signature').click();
+
+  // Expects page to have 'Authenticate to Banfts!' text.
+  await expect(page.getByText('Authenticate to Banfts!')).toBeVisible();
 });
