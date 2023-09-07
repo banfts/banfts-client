@@ -16,7 +16,7 @@ export async function load({ url, fetch }) {
     return {
       accountAddress: address,
       success: false,
-      message: addressValid.message,
+      message: "Address invalid, are you logged in?",
     };
   }
 
