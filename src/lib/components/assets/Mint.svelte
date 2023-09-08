@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
 
   import { IPFS_GATEWAY } from '$lib/config/constants.js';

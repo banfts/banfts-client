@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
 
   import AddressNfts from '$lib/components/AddressNfts.svelte';

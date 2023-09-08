@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
 
   //import OwnedMintedCard from '$lib/components/OwnedMintedCard.svelte';

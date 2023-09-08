@@ -5,11 +5,11 @@
 </script>
 
 <div class="flex flex-col min-h-screen p-4">
-	<Header />
+  <Header />
 
-	<main class="flex flex-col flex-grow">
-		<slot />
-	</main>
+  <main class="flex flex-col flex-grow">
+    <slot />
+  </main>
 
-	<Footer />
+  <Footer />
 </div>
