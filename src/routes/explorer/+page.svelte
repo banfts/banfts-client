@@ -54,7 +54,15 @@
         <option value="minter-address">Minter Address</option>
       </select>
       <div>
-        <button class="btn btn-primary join-item" on:click={explorerSearch}>Search</button>
+        <button class="btn btn-primary join-item" on:click={explorerSearch}>
+          <!-- this means, hide svg and show 'Search' if bigger than the sm breakpoint, otherwise, show svg and hide 'Search' -->
+          <div class="sm:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+          <div class="hidden sm:inline-block">
+            Search
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -79,10 +87,10 @@
             <div class="flex flex-col my-2">
               <div class="flex justify-between">
                 <h3 class="text-sm text-gray-400">Ask Price</h3>
-                <p class="text-end text-yellow-200 font-bold">199 BAN</p>
+                <p class="text-end dark:text-yellow-200 font-bold">199 BAN</p>
               </div>
               <div class="flex justify-between">
-                <p class="text-xs text-end text-yellow-200">$0.9 USD</p>
+                <p class="text-xs text-end dark:text-yellow-200">$0.9 USD</p>
               </div>
             </div>
             <div class="card-actions justify-end">

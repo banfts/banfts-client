@@ -2,8 +2,9 @@
   import { IPFS_GATEWAY } from '$lib/config/constants.js';
   import { accountToIpfsCid } from '$lib/utils/ipfs.js';
 
+  import { getCurrencyString } from '$lib/services/price.js';
+
   export let listing;
-  export let usdPerBanano;
 
   let metadata;
 
@@ -34,10 +35,10 @@
         <div class="flex flex-col my-2">
           <div class="flex justify-between">
             <h3 class="text-sm text-gray-400">Ask Price</h3>
-            <p class="text-end text-yellow-200 font-bold">{listing.ask_price} BAN</p>
+            <p class="text-end dark:text-yellow-200 font-bold">{listing.ask_price} BAN</p>
           </div>
           <div class="flex justify-between">
-            <p class="text-xs text-end text-yellow-200">${Math.floor(usdPerBanano*listing.ask_price*100)/100}~ USD</p>
+            <p class="text-xs text-end dark:text-yellow-200">{getCurrencyString(listing.ask_price)}</p>
           </div>
         </div>
         <div class="card-actions justify-end">
