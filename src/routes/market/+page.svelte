@@ -1,12 +1,12 @@
 <script>
   import { API_URL, PER_PAGE } from '$lib/config/constants.js';
   import ListingCard from '$lib/components/ListingCard.svelte';
-  import { usdPerBanano, get_price } from '$lib/services/price.js';
+  import { getPrice } from '$lib/services/price.js';
 
   export let data;
 
   // Call to super duper make sure the price is fetched, sometimes with weird svelte navigations it isn't
-  get_price();
+  getPrice();
 
   let listings = data.listings;
   let noPageAfter = false;
@@ -112,7 +112,7 @@
   <div class="flex flex-col justify-between lg:h-full max-w-full px-4 pb-4 sm:px-6 lg:px-8">
     <div class="my-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       {#each listings as listing}
-        <ListingCard {listing} {usdPerBanano}/>
+        <ListingCard {listing}/>
       {/each}
     </div>
     <div class="flex justify-center gap-2">

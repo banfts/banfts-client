@@ -1,9 +1,18 @@
 <script>
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
+  import { onMount } from 'svelte';
 
   import { IPFS_GATEWAY } from '$lib/config/constants.js';
 
   export let mintData;
+
+  onMount(() => {
+    if (navigator?.clipboard) {
+      document.getElementById("copy-mint-hash").onclick = () => {
+        navigator.clipboard.writeText(mintData.mint_hash);
+      };
+    }
+  });
 </script>
 
 <div class="flex flex-col min-h-full bg-base-300 rounded-box shadow mt-4">
@@ -14,11 +23,11 @@
     <div class="flex-none self-center">
       <ul>
         <li class="tooltip tooltip-bottom" data-tip="Copy to clipboard">
-          <a class="btn btn-ghost btn-sm btn-circle" href="#">
+          <button id="copy-mint-hash" class="btn btn-ghost btn-sm btn-circle">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
             </svg>
-          </a>
+          </button>
         </li>
         <li class="tooltip tooltip-bottom" data-tip="Back" aria-current={$page.url.pathname === '/explorer' ? 'page' : undefined}>
           <a class="btn btn-ghost btn-sm btn-circle" href="/explorer">
@@ -48,7 +57,7 @@
 
       <div class="mt-4 lg:row-span-1 lg:mt-0">
         <h2 class="sr-only">Asset information</h2>
-        <p class="text-3xl tracking-tight text-gray-300 mb-4">{mintData.asset_metadata.name}</p>
+        <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">{mintData.asset_metadata.name}</p>
 
         <div>
           <h3 class="sr-only">Description</h3>
@@ -63,17 +72,17 @@
         <div class="mt-8">
           <h3 class="font-medium text-gray-400 mb-2">Details</h3>
           <span class="text-gray-500 text-xs">Supply Hash</span>
-          <p class="text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={mintData.asset.supply_hash}">{mintData.asset.supply_hash}</a></p>
+          <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={mintData.asset.supply_hash}">{mintData.asset.supply_hash}</a></p>
           <span class="text-gray-500 text-xs">Mint Hash</span>
-          <p class="text-gray-300 truncate">{mintData.asset.mint_hash}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.mint_hash}</p>
           <span class="text-gray-500 text-xs">Owner</span>
-          <p class="text-gray-300 truncate">{mintData.asset.owner}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.owner}</p>
           <span class="text-gray-500 text-xs">Asset Representative</span>
-          <p class="text-gray-300 truncate">{mintData.asset_representative}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
-          <p class="text-gray-300 truncate"><a class="link" href="/explorer/minters?address={mintData.asset_metadata.properties.issuer}">{mintData.asset_metadata.properties.issuer}</a></p>
+          <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={mintData.asset_metadata.properties.issuer}">{mintData.asset_metadata.properties.issuer}</a></p>
           <span class="text-gray-500 text-xs">Lock status</span>
-          <p class="text-gray-300 truncate">{mintData.asset.locked ? 'Locked' : 'Unlocked'}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.locked ? 'Locked' : 'Unlocked'}</p>
         </div>
       </div>
 

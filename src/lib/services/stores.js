@@ -19,3 +19,11 @@ loginTimestamp.subscribe(value => {
   }
 });
 
+const sessionCurrency = browser ? window.localStorage.getItem('currency') ?? "usd" : "usd";
+export const currency = writable(sessionCurrency);
+
+currency.subscribe(value => {
+  if (browser) {
+    window.localStorage.setItem("currency", value ? value : "usd");
+  }
+});
