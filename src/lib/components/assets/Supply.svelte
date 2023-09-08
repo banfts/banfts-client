@@ -69,7 +69,7 @@
 
       <div class="mt-4 lg:row-span-1 lg:mt-0">
         <h2 class="sr-only">Asset information</h2>
-        <p class="text-3xl tracking-tight text-gray-300 mb-4">{supplyInfo.asset_supply.nft_metadata.name}</p>
+        <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">{supplyInfo.asset_supply.nft_metadata.name}</p>
 
         <div>
           <h3 class="sr-only">Description</h3>
@@ -84,17 +84,17 @@
         <div class="mt-8">
           <h3 class="font-medium text-gray-400 mb-2">Details</h3>
           <span class="text-gray-500 text-xs">Metadata Representative</span>
-          <p class="text-gray-300 truncate">{supplyInfo.asset_supply.metadata_representative}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{supplyInfo.asset_supply.metadata_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
-          <p class="text-gray-300 truncate"><a class="link" href="/explorer/minters?address={supplyInfo.asset_supply.minter_address}">{supplyInfo.asset_supply.minter_address}</a></p>
+          <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={supplyInfo.asset_supply.minter_address}">{supplyInfo.asset_supply.minter_address}</a></p>
           <span class="text-gray-500 text-xs">Max Supply</span>
-          <p class="text-gray-300">{ supplyInfo.asset_supply.max_supply === 0 ? "No Limit" : supplyInfo.asset_supply.max_supply }</p>
+          <p class="text-gray-400 dark:text-gray-300">{ supplyInfo.asset_supply.max_supply === 0 ? "No Limit" : supplyInfo.asset_supply.max_supply }</p>
           <span class="text-gray-500 text-xs">Total Minted</span>
-          <p class="text-gray-300">{supplyInfo.asset_supply.mint_blocks_count}/{supplyInfo.asset_supply.max_supply}</p>
+          <p class="text-gray-400 dark:text-gray-300">{supplyInfo.asset_supply.mint_blocks_count}/{supplyInfo.asset_supply.max_supply}</p>
           <span class="text-gray-500 text-xs">Protocol Version</span>
-          <p class="text-gray-300">{supplyInfo.asset_supply.version.major_version}.{supplyInfo.asset_supply.version.minor_version}.{supplyInfo.asset_supply.version.patch_version}</p>
+          <p class="text-gray-400 dark:text-gray-300">{supplyInfo.asset_supply.version.major_version}.{supplyInfo.asset_supply.version.minor_version}.{supplyInfo.asset_supply.version.patch_version}</p>
           <span class="text-gray-500 text-xs">External URL</span>
-          <p class="text-gray-300">{ supplyInfo.asset_supply.nft_metadata.external_url ? supplyInfo.asset_supply.nft_metadata.external_url : "None" }</p>
+          <p class="text-gray-400 dark:text-gray-300">{ supplyInfo.asset_supply.nft_metadata.external_url ? supplyInfo.asset_supply.nft_metadata.external_url : "None" }</p>
         </div>
       </div>
     </div>

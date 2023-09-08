@@ -50,7 +50,7 @@
 
         <div class="mt-4 lg:row-span-1 lg:mt-0">
           <h2 class="sr-only">Account Information</h2>
-          <p class="text-3xl tracking-tight text-gray-300 mb-4">{data.info.name}</p>
+          <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">{data.info.name}</p>
 
           <div>
             <h3 class="sr-only">Description</h3>
@@ -65,9 +65,9 @@
           <div class="mt-8">
             <h3 class="font-medium text-gray-400 mb-2">Details</h3>
             <span class="text-gray-500 text-xs">Owned NFTs</span>
-            <p class="text-gray-300 truncate"><a class="link" href="/explorer/addresses?address={data.address}">Click Here</a></p>
+            <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/addresses?address={data.address}">Click Here</a></p>
             <span class="text-gray-500 text-xs">External Link</span>
-            <p class="text-gray-300 truncate">
+            <p class="text-gray-400 dark:text-gray-300 truncate">
               {#if data.info.external_url}
                 <ExternalLink url={data.info.external_url} content="{data.info.external_url}"/>
               {:else}
@@ -75,7 +75,7 @@
               {/if}
             </p>
             <span class="text-gray-500 text-xs">Total Supply NFTs</span>
-            <p class="text-gray-300 truncate">{data.supplies.length}</p>
+            <p class="text-gray-400 dark:text-gray-300 truncate">{data.supplies.length}</p>
           </div>
         </div>
       </div>

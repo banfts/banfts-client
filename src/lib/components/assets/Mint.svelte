@@ -48,7 +48,7 @@
 
       <div class="mt-4 lg:row-span-1 lg:mt-0">
         <h2 class="sr-only">Asset information</h2>
-        <p class="text-3xl tracking-tight text-gray-300 mb-4">{mintData.asset_metadata.name}</p>
+        <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">{mintData.asset_metadata.name}</p>
 
         <div>
           <h3 class="sr-only">Description</h3>
@@ -63,17 +63,17 @@
         <div class="mt-8">
           <h3 class="font-medium text-gray-400 mb-2">Details</h3>
           <span class="text-gray-500 text-xs">Supply Hash</span>
-          <p class="text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={mintData.asset.supply_hash}">{mintData.asset.supply_hash}</a></p>
+          <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={mintData.asset.supply_hash}">{mintData.asset.supply_hash}</a></p>
           <span class="text-gray-500 text-xs">Mint Hash</span>
-          <p class="text-gray-300 truncate">{mintData.asset.mint_hash}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.mint_hash}</p>
           <span class="text-gray-500 text-xs">Owner</span>
-          <p class="text-gray-300 truncate">{mintData.asset.owner}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.owner}</p>
           <span class="text-gray-500 text-xs">Asset Representative</span>
-          <p class="text-gray-300 truncate">{mintData.asset_representative}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset_representative}</p>
           <span class="text-gray-500 text-xs">Issuer</span>
-          <p class="text-gray-300 truncate"><a class="link" href="/explorer/minters?address={mintData.asset_metadata.properties.issuer}">{mintData.asset_metadata.properties.issuer}</a></p>
+          <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={mintData.asset_metadata.properties.issuer}">{mintData.asset_metadata.properties.issuer}</a></p>
           <span class="text-gray-500 text-xs">Lock status</span>
-          <p class="text-gray-300 truncate">{mintData.asset.locked ? 'Locked' : 'Unlocked'}</p>
+          <p class="text-gray-400 dark:text-gray-300 truncate">{mintData.asset.locked ? 'Locked' : 'Unlocked'}</p>
         </div>
       </div>
 

@@ -1,13 +1,14 @@
 <script>
   import { API_URL, IPFS_GATEWAY } from '$lib/config/constants.js';
-  import { usdPerBanano, get_price } from '$lib/services/price.js';
+  import { getCurrencyString, getPrice } from '$lib/services/price.js';
+  import { sessionAddress } from '$lib/services/stores.js';
 
   import ExternalLink from '$lib/components/ExternalLink.svelte';
   
   export let data;
 
   // Call to super duper make sure the price is fetched, sometimes with weird svelte navigations it isn't
-  get_price();
+  getPrice();
 
   let info = data.info;
   let listing = data.listing;
@@ -86,9 +87,9 @@
           <span>Listed by <a class="link" href="/explorer/addresses?address={listing.account}">{listing.account.replace(listing.account.slice(10, -4), "...")}</a></span> - <a class="link" href="/explorer/supply?supply_hash={info.supply_hash}">More NFT Info</a>
         </div>
         <div>
-          <span>Ask Price: </span><span class="text-yellow-200">{listing.ask_price} BAN</span>
+          <span>Ask Price: </span><span class="dark:text-yellow-200">{listing.ask_price} BAN</span>
           -
-          <span class="text-end text-yellow-200">${Math.floor(usdPerBanano*listing.ask_price*100)/100}~ USD</span>
+          <span class="text-end dark:text-yellow-200">{getCurrencyString(listing.ask_price)}</span>
         </div>
         <div class="h-full pt-5">
           {#if info.asset_supply.nft_metadata.animation_url}
@@ -146,9 +147,9 @@
             {#each Object.keys(offers) as offerror}
               <div class="card bg-base-100 rounded-box shadow mr-5 min-w-fit">
                 <div class="card-body">
-                  <p><a class="link" href="/explorer/addresses?address={listing.account}">{offerror.replace(offerror.slice(10, -4), "...")}</a> offers {offers[offerror]} BAN</p>
+                  <p><a class="link" href="/explorer/addresses?address={offerror}">{offerror.replace(offerror.slice(10, -4), "...")}</a> offers {offers[offerror]} BAN</p>
                   <!-- TODO, only show if owner -->
-                  <button class="btn btn-neutral" on:click={() => acceptOffer(offerror)}>Accept Offer</button>
+                  <button class="btn btn-neutral" on:click={() => acceptOffer(offerror)} disabled={ $sessionAddress !== listing.account }>Accept Offer</button>
                 </div>
               </div>
             {/each}

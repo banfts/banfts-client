@@ -1,5 +1,12 @@
 <script>
 	import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+
+  async function logoutConfirm() {
+    if (confirm("Are you sure you want to log out?")) {
+      await goto("/logout");
+    }
+  }
 </script>
 
 <header>
@@ -38,7 +45,7 @@
                 <span class="font-bold text-lg">Trending NFTs</span>
                 <span class="text-info">...</span>
                 <div class="card-actions">
-                  <button class="btn btn-primary btn-block">View listing</button>
+                  <a class="btn btn-primary btn-block" href="/market">View Market</a>
                 </div>
               </div>
             </div>
@@ -59,7 +66,7 @@
                 </a>
               </li>
               <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
-              <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><a href="/logout">Logout</a></li>
+              <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><button on:click={logoutConfirm}>Logout</button></li>
             </ul>
           </div>
         </li>
