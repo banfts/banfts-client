@@ -19,6 +19,8 @@
         <option value="vnd" selected={$currency === "vnd"}>VND</option>
         <option value="inr" selected={$currency === "inr"}>INR</option>
         <option value="jpy" selected={$currency === "jpy"}>JPY</option>
+        <option value="mxn" selected={$currency === "mxn"}>MXN</option>
+        <option value="try" selected={$currency === "try"}>TRY</option>
         <option value="btc" selected={$currency === "btc"}>BTC</option>
         <option value="eth" selected={$currency === "eth"}>ETH</option>
       </select>
