@@ -12,6 +12,8 @@ const currencySymbols = {
   vnd: 'đ',
   inr: '₹',
   jpy: '¥',
+  mxn: '$',
+  try: '₺',
   btc: '₿',
   eth: 'Ð',
 };

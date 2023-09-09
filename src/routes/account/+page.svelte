@@ -4,6 +4,7 @@
 
   import AddressNfts from '$lib/components/AddressNfts.svelte';
   import { format_commas } from '$lib/utils/format.js';
+  import { getCurrencyString } from '$lib/services/price.js';
   import { sessionAddress } from '$lib/services/stores.js';
 
   export let data;
@@ -68,7 +69,7 @@
           <div>
             <h3 class="sr-only">Description</h3>
             <div class="space-y-6">
-              <p class="text-base text-gray-400">{format_commas(String(balance_decimal))}~ BAN</p>
+              <p class="text-base text-gray-400">{format_commas(String(balance_decimal))}~ BAN ({getCurrencyString(balance_decimal)})</p>
             </div>
           </div>
 
