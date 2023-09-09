@@ -14,19 +14,6 @@
   let listing = data.listing;
   let offers = listing?.offers;
 
-  //placeholder
-  /*offers = {
-    "ban_123": 123,
-    "ban_456": 12.51,
-    "ban_789": 77.1,
-    "ba3n_123": 123,
-    "ban3_456": 12.51,
-    "ban3_789": 77.1,
-    "ban4_123": 123,
-    "ban4_456": 12.51,
-    "ban4_789": 77.1,
-  };*/
-
   let atLeast = Math.ceil((listing?.ask_price*1.01)*100)/100 
 
   // The mask stuff taken from my jetstream0/ztmy. I think it's pretty cool
@@ -57,6 +44,18 @@
       successTx = resp.nft_send_hash;
     } else {
       errorMessageCheck = resp.message;
+    }
+  }
+
+  let deleteSuccess;
+
+  async function cancelListing() {
+    const resp = await (await fetch(`${API_URL}/market/listings/${data.mint_hash}`, {
+      credentials: 'include',
+      method: 'DELETE',
+    })).json();
+    if (resp.success) {
+      deleteSuccess = true;
     }
   }
 
@@ -104,37 +103,50 @@
       </div>
       <div>
         <div class="mb-2">
-          <h2 class="text-2xl">Buy This NFT!</h2>
           {#if listing.verified}
-            {#if buying}
-              <div class="mt-2 mb-2">
-                <p class="mb-2">To instantly buy the NFT, send <b>at least {atLeast} BAN to the escrow address ({listing.escrow_address})</b>.</p>
-                <p class="mb-2">If you send less than this amount, it will become an offer that the lister has a choice to accept. If you send multiple sends, they will be totaled up, and execute an instant buy, if it the total amount sent equals or exceeds {atLeast} BAN.</p>
-                <p class="mb-2">1% of any send is taken as a fee. If your offer is not accepted, or listing is cancelled, you will be refunded, minus the fee. Please contact support (in our Discord linked at the bottom of the page) if you encounter any issues.</p>
-                <p class="mb-2">If you use the Bananostand wallet, <ExternalLink url="https://thebananostand.com?request=send&address={listing.escrow_address}&amount={atLeast}" content="click here to buy the NFT"/>.</p>
-                <p><b>Click the button below once you've sent some funds to the escrow address.</b></p>
-              </div>
-              <button class="btn btn-primary block" on:click={requestCheck}>Receive + Check for Instant Buy</button>
-              {#if errorMessageCheck}
-                <div class="alert alert-warning mt-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                  <span>{errorMessageCheck}</span>
-                  <div>
-                    <span role="button" on:keydown={() => errorMessageCheck = undefined} on:click={() => errorMessageCheck = undefined} tabindex="0">
-                      x
-                    </span>
-                  </div>
-                </div>
-              {:else if successTx}
-                <div class="alert alert-success mt-2">
+            {#if $sessionAddress === listing.account}
+              <h2 class="text-2xl">Cancel Listing</h2>
+              <p class="mt-2">Click below to cancel the listing. The listed NFT will be returned, and all offers will be refunded.</p>
+              <p class="mt-2 mb-2">The escrow address is <ExternalLink url="https://creeper.banano.cc/account/{listing.escrow_address}" content={listing.escrow_address}/>.</p>
+              {#if deleteSuccess}
+                <div class="alert alert-error mt-2 mb-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span>Success! You have bought the NFT. <ExternalLink url="https://creeper.banano.cc/hash/{successTx}" content="View NFT send on Creeper"/></span>
+                  <span>Offer cancelled, sending back NFT and refunding everyone.</span>
                 </div>
               {/if}
-              <span role="button" class="underline text-red-500" on:keydown={() => buying = false} on:click={() => buying = false} tabindex="0">Go Back</span>
+              <button class="btn btn-error" on:click={cancelListing}>Cancel Listing</button>
             {:else}
-              <p class="mb-2 mt-2">Click below to start the process to buy the NFT.</p>
-              <button class="btn btn-primary" on:click={() => buying = true}>Buy NFT!</button>
+              <h2 class="text-2xl">Buy This NFT!</h2>
+              {#if buying}
+                <div class="mt-2 mb-2">
+                  <p class="mb-2">To instantly buy the NFT, send <b>at least {atLeast} BAN to the escrow address ({listing.escrow_address})</b>.</p>
+                  <p class="mb-2">If you send less than this amount, it will become an offer that the lister has a choice to accept. If you send multiple sends, they will be totaled up, and execute an instant buy, if it the total amount sent equals or exceeds {atLeast} BAN.</p>
+                  <p class="mb-2">1% of any send is taken as a fee. If your offer is not accepted, or listing is cancelled, you will be refunded, minus the fee. Please contact support (in our Discord linked at the bottom of the page) if you encounter any issues.</p>
+                  <p class="mb-2">If you use the Bananostand wallet, <ExternalLink url="https://thebananostand.com?request=send&address={listing.escrow_address}&amount={atLeast}" content="click here to buy the NFT"/>.</p>
+                  <p><b>Click the button below once you've sent some funds to the escrow address.</b></p>
+                </div>
+                <button class="btn btn-primary block" on:click={requestCheck}>Receive + Check for Instant Buy</button>
+                {#if errorMessageCheck}
+                  <div class="alert alert-warning mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <span>{errorMessageCheck}</span>
+                    <div>
+                      <span role="button" on:keydown={() => errorMessageCheck = undefined} on:click={() => errorMessageCheck = undefined} tabindex="0">
+                        x
+                      </span>
+                    </div>
+                  </div>
+                {:else if successTx}
+                  <div class="alert alert-success mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Success! You have bought the NFT. <ExternalLink url="https://creeper.banano.cc/hash/{successTx}" content="View NFT send on Creeper"/></span>
+                  </div>
+                {/if}
+                <span role="button" class="underline text-red-500" on:keydown={() => buying = false} on:click={() => buying = false} tabindex="0">Go Back</span>
+              {:else}
+                <p class="mb-2 mt-2">Click below to start the process to buy the NFT.</p>
+                <button class="btn btn-primary" on:click={() => buying = true}>Buy NFT!</button>
+              {/if}
             {/if}
           {:else}
             <!-- TODO, reshow instructions on how to send NFT to escrow address? maybe a link? -->
