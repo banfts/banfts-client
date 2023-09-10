@@ -14,9 +14,11 @@
 
   onMount(() => {
     if (navigator?.clipboard) {
-      document.getElementById("copy-address").onclick = () => {
-        navigator.clipboard.writeText(data.account.address);
-      };
+      if (document.getElementById("copy-address")) {
+        document.getElementById("copy-address").onclick = () => {
+          navigator.clipboard.writeText(data.account.address);
+        };
+      }
     }
   });
 </script>

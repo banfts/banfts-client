@@ -6,11 +6,18 @@
 
   export let data;
 
+  let modalOpen;
+
   onMount(() => {
     if (navigator?.clipboard) {
       if (document.getElementById("copy-mint-hash")) {
         document.getElementById("copy-mint-hash").onclick = () => {
           navigator.clipboard.writeText(data.mint_hash);
+        };
+      }
+      if (document.getElementById("copy-asset-json")) {
+        document.getElementById("copy-asset-json").onclick = () => {
+          navigator.clipboard.writeText(JSON.stringify(data.asset.asset_chain, null, 2));
         };
       }
     }
@@ -58,7 +65,9 @@
               <source src="{IPFS_GATEWAY}/{data.asset_metadata.animation_url}#x-ipfs-companion-no-redirect">
             </video>
           {:else}
-            <img src="{data.asset_metadata.image_url}" alt="NFT" class="h-full w-full object-cover object-center">
+            <label for="full-image-modal">
+              <img src="{data.asset_metadata.image_url}" alt="NFT" class="h-full w-full object-cover object-center">
+            </label>
           {/if}
         </div>
 
@@ -85,11 +94,11 @@
             <span class="text-gray-500 text-xs">Owner</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/addresses?address={data.asset.owner}">{data.asset.owner}</a></p>
             <span class="text-gray-500 text-xs">Asset Representative</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate">{data.asset_representative}</p>
+            <p class="text-gray-400 dark:text-gray-300 truncate hover:underline hover:decoration-dotted" title="To send this NFT, send a transaction while your rep is set to this">{data.asset_representative}</p>
             <span class="text-gray-500 text-xs">Issuer</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={data.asset_metadata.properties.issuer}">{data.asset_metadata.properties.issuer}</a></p>
             <span class="text-gray-500 text-xs">Lock status</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate">{data.asset.locked ? 'Locked' : 'Unlocked'}</p>
+            <p class="text-gray-400 dark:text-gray-300 truncate hover:underline hover:decoration-dotted" title="NFTs are locked when undergoing an atomic swap">{data.asset.locked ? 'Locked' : 'Unlocked'}</p>
           </div>
         </div>
 
@@ -98,15 +107,15 @@
             <h3 class="font-medium text-gray-400">Asset Chain</h3>
             <div class="rounded-lg overflow-hidden mt-4">
               <div class="overflow-x-auto overflow-y-auto max-h-60">
-                <code class="text-xs sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-gray-500 p-4 pl-6">
+                <code class="w-full text-xs sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-gray-500 p-4 pl-6">
                   <span class="flex-1">
                     <pre class="">{JSON.stringify(data.asset.asset_chain, null, 2)}</pre>
                   </span>
                   <span class="flex gap-4">
                   </span>
-                  <svg class="self-start shrink-0 h-5 w-5 transition text-gray-500 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
-                      <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z"></path>
+                  <svg id="copy-asset-json" class="self-start shrink-0 h-5 w-5 transition text-gray-500 group-hover:text-white hover:text-white hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                    <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z"></path>
                   </svg>
                 </code>
               </div>
@@ -117,6 +126,19 @@
       </div>
     </div>
   </div>
+
+  {#if !data.asset_metadata.animation_url}
+    <input type="checkbox" id="full-image-modal" class="modal-toggle" bind:this={modalOpen} />
+    <dialog class="modal bg-neutral-900/[.8]">
+      <div class="modal-box m-0 p-0 max-h-[96vh]">
+        <div class="absolute top-1 left-1">
+          <button class="btn btn-sm border-none bg-neutral-900/[.8]" on:click={() => {modalOpen.checked = false}}>x</button>
+        </div>
+        <img src="{data.asset_metadata.image_url}" alt="NFT" class="w-full object-cover object-center">
+      </div>
+      <label class="modal-backdrop" for="full-image-modal">Close</label>
+    </dialog>
+  {/if}
 {:else}
   <p><span class="text-red-500">Error:</span> {data.message}</p>
 {/if}
