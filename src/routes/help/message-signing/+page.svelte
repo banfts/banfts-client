@@ -7,6 +7,10 @@
 
 <!-- TODO: Move this to docs page? -->
 
+<svelte:head>
+  <title>Help: Logging In With Message Signing</title>
+</svelte:head>
+
 <h1 class="text-4xl mb-4">Help: Logging In With Message Signing</h1>
 
 <p class="my-4">

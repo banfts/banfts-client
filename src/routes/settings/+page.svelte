@@ -5,6 +5,10 @@
   export let data;
 </script>
 
+<svelte:head>
+  <title>Settings</title>
+</svelte:head>
+
 {#if data.success}
   <div class="flex flex-col min-h-full bg-base-300 rounded-box shadow mt-4 p-4">
     <h1 class="text-4xl">Settings</h1>
