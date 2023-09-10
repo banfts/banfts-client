@@ -10,6 +10,14 @@ export const ssr = false;
 export async function load({ url, fetch }) {
   const address = url.searchParams.get("address");
 
+  if (!address) {
+    const allMinters = (await (await fetch(`${API_URL}/minters`)).json()).minters;
+    return {
+      found: true,
+      allMinters,
+    }
+  }
+
   if (!validateBananoAddress(address)) {
     return {
       address,

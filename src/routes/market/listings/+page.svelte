@@ -74,6 +74,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>{data.found ? `Listing ${info.supply_hash}` : "Error"}</title>
+</svelte:head>
+
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
   {#if !data.found}
     <p class="mb-2"><span class="text-red-500">Error:</span> {data.message}</p>
