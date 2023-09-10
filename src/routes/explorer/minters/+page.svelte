@@ -115,7 +115,7 @@
     <div class="flex flex-col min-h-full bg-base-300 rounded-box shadow mt-4">
       <div class="py-2 px-3 lg:py-3 lg:px-8">
         <h1 class="text-3xl">All Minters</h1>
-        <p>Want to mint your own Banano NFTs? Click <ExternalLink url="https://bannfts.prussiafan.club/mint" content="here"/>. After you mint, be sure to join our Discord so we can add you to the list of minters - otherwise your NFTs will not be indexed.</p>
+        <p>Want to mint your own Banano NFTs? Click <a class="link" href="/minting">here</a>. After you mint, be sure to join our Discord so we can add you to the list of minters - otherwise your NFTs will not be indexed.</p>
       </div>
     </div>
     <div class="my-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
