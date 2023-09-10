@@ -44,6 +44,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Signature Auth</title>
+</svelte:head>
+
 <div class="flex flex-grow my-4">
   <div class="hero min-h-full bg-base-300 rounded-box shadow">
     <div class="hero-content flex-col lg:flex-row-reverse">

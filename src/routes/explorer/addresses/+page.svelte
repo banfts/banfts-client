@@ -5,6 +5,10 @@
   export let data;
 </script>
 
+<svelte:head>
+  <title>{data.found ? `Address ${data.address}` : "Error"}</title>
+</svelte:head>
+
 {#if data.found}
   <div class="flex flex-col w-full bg-base-300 rounded-box shadow my-4">
       <div class="mb-2 mx-auto">

@@ -21,6 +21,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>{ data.success ? "Account" : "Error" }</title>
+</svelte:head>
+
 {#if data.success}
   <div class="flex flex-col min-h-full bg-base-300 rounded-box shadow mt-4">
     <div class="flex justify-between w-full items-center space-x-2 py-2 px-3 lg:py-3 lg:px-8">

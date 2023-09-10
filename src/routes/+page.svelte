@@ -3,6 +3,10 @@
   import { sessionAddress, loginTimestamp } from '$lib/services/stores.js';
 </script>
 
+<svelte:head>
+  <title>Banfts</title>
+</svelte:head>
+
 <div class="flex flex-grow my-4">
   <div class="hero min-h-full bg-base-300 rounded-box shadow">
     <div class="hero-content text-center">

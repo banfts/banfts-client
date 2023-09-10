@@ -53,8 +53,6 @@
       return;
     }
 
-    console.log(resp)
-
     escrowAddress = resp.escrow_address;
 
     createMode = true;
@@ -107,6 +105,10 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>{data.found ? "Create New Listing" : "Error"}</title>
+</svelte:head>
 
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
   {#if !data.found}

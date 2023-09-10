@@ -72,6 +72,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Market</title>
+</svelte:head>
+
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
   <div class="mb-2 mx-auto">
     <div class="text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
