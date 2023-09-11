@@ -2,6 +2,9 @@
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
 
+  import { ONE_DAY_MS } from '$lib/config/constants.js';
+  import { sessionAddress, loginTimestamp } from '$lib/services/stores.js';
+
   async function logoutConfirm() {
     if (confirm("Are you sure you want to log out?")) {
       await goto("/logout");
@@ -54,25 +57,29 @@
             </div>
           </div>
         </li>
-        <li class="tooltip tooltip-bottom" data-tip="Account">
-          <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-              </svg>
-            </label>
-            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
-                <a class="justify-between" href="/account">
-                  Account
-                  <span class="badge">New</span>
-                </a>
-              </li>
-              <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
-              <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><button on:click={logoutConfirm}>Logout</button></li>
-            </ul>
-          </div>
-        </li>
+          <li class="tooltip tooltip-bottom" data-tip="Account">
+            <div class="dropdown dropdown-end">
+              <label tabindex="0" class="btn btn-ghost btn-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </label>
+              <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - ONE_DAY_MS}
+                  <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
+                    <a class="justify-between" href="/account">
+                      Account
+                      <span class="badge">New</span>
+                    </a>
+                  </li>
+                {/if}
+                <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
+                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - ONE_DAY_MS}
+                  <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><button on:click={logoutConfirm}>Logout</button></li>
+                {/if}
+              </ul>
+            </div>
+          </li>
       </ul>
     </div>
   </div>
