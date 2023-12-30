@@ -8,7 +8,7 @@
   export let data;
 
   let modalOpen;
-
+ 
   let pageNum = 1;
 
   let minted = [];

@@ -126,7 +126,6 @@
       </div>
     </div>
   </div>
-
   {#if !data.asset_metadata.animation_url}
     <input type="checkbox" id="full-image-modal" class="modal-toggle" bind:this={modalOpen} />
     <dialog class="modal bg-neutral-900/[.8]">
