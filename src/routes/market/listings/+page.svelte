@@ -98,7 +98,7 @@
           {#if info.asset_supply.nft_metadata.animation_url}
             <!-- svelte-ignore a11y-media-has-caption -->
             <video class="w-5/6" controls>
-              <source src="{IPFS_GATEWAY}/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">
+              <source src="{IPFS_GATEWAY}/{info.asset_supply.nft_metadata.animation_url}#x-ipfs-companion-no-redirect">
             </video>
           {:else}
             <img class="w-5/6" alt="{info.asset_supply.nft_metadata.name} Image" src="{IPFS_GATEWAY}/{info.asset_supply.nft_metadata.image}#x-ipfs-companion-no-redirect">

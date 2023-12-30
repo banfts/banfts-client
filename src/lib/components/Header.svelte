@@ -15,7 +15,10 @@
 <header>
   <div class="navbar bg-base-300 p-2 lg:p-3 rounded-box shadow">
     <div class="flex-1" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-      <a class="btn btn-ghost normal-case text-xl" href="/">Banfts</a>
+      <a class="btn btn-ghost normal-case text-xl" href="/">
+        <img src="/favicon.ico" class="w-8 h-8 rounded-box" alt="logo"/>
+        Banfts
+      </a>
     </div>
     <div class="flex-none">
       <ul>
@@ -72,8 +75,9 @@
                       <span class="badge">New</span>
                     </a>
                   </li>
+                  <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
                 {/if}
-                <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
+                <li aria-current={$page.url.pathname === '/minting' ? 'page' : undefined}><a href="/minting">Minting</a></li>
                 {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - ONE_DAY_MS}
                   <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><button on:click={logoutConfirm}>Logout</button></li>
                 {/if}
