@@ -7,6 +7,8 @@
 
   export let data;
 
+  let modalOpen;
+ 
   let pageNum = 1;
 
   let minted = [];
@@ -79,7 +81,10 @@
               <source src="{IPFS_GATEWAY}/{data.info.asset_supply.nft_metadata.animation_url}#x-ipfs-companion-no-redirect">
             </video>
           {:else}
-            <img src="{IPFS_GATEWAY}/{data.info.asset_supply.nft_metadata.image}" alt="NFT" class="h-full w-full object-cover object-center">
+            <!-- checks the open modal checkbox -->
+            <label for="full-image-modal">
+              <img src="{IPFS_GATEWAY}/{data.info.asset_supply.nft_metadata.image}" alt="NFT" class="h-full w-full object-cover object-center">
+            </label>
           {/if}
         </div>
 
@@ -106,7 +111,7 @@
             <span class="text-gray-500 text-xs">Max Supply</span>
             <p class="text-gray-400 dark:text-gray-300">{ data.info.asset_supply.max_supply === 0 ? "No Limit" : data.info.asset_supply.max_supply }</p>
             <span class="text-gray-500 text-xs">Total Minted</span>
-            <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.mint_blocks_count}/{data.info.asset_supply.max_supply}</p>
+            <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.mint_blocks_count}/{ data.info.asset_supply.max_supply === 0 ? "∞" : data.info.asset_supply.max_supply }</p>
             <span class="text-gray-500 text-xs">Protocol Version</span>
             <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.version.major_version}.{data.info.asset_supply.version.minor_version}.{data.info.asset_supply.version.patch_version}</p>
             <span class="text-gray-500 text-xs">External URL</span>
@@ -151,6 +156,19 @@
       </button>
     </div>
   </div>
+
+  {#if !data.info.asset_supply.nft_metadata.animation_url}
+    <input type="checkbox" id="full-image-modal" class="modal-toggle" bind:this={modalOpen} />
+    <dialog class="modal bg-neutral-900/[.8]">
+      <div class="modal-box m-0 p-0 max-h-[96vh]">
+        <div class="absolute top-1 left-1">
+          <button class="btn btn-sm border-none bg-neutral-900/[.8]" on:click={() => {modalOpen.checked = false}}>x</button>
+        </div>
+        <img src="{IPFS_GATEWAY}/{data.info.asset_supply.nft_metadata.image}" alt="NFT" class="w-full object-cover object-center">
+      </div>
+      <label class="modal-backdrop" for="full-image-modal">Close</label>
+    </dialog>
+  {/if}
 
   <!-- TODO: Shows nft_metadata.tips array, show the minted nfts for supply hash -->
 
