@@ -17,7 +17,8 @@ export async function load({ url, fetch }) {
   }
 
   const resp = await (await fetch(`${API_URL}/assets/supply/${supplyHash}`)).json();
-  if (!resp.success) {
+  const resp_count = await (await fetch(`${API_URL}/assets/supply/${supplyHash}/assets/count`)).json();
+  if (!resp.success || !resp_count.success) {
     return {
       supply_hash: supplyHash,
       found: false,
@@ -29,5 +30,6 @@ export async function load({ url, fetch }) {
     supply_hash: supplyHash,
     found: true,
     info: resp.assets, //just returns a singular supply asset, to be clear
+    count: resp_count.count,
   };
 }

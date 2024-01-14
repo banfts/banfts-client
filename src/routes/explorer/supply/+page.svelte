@@ -111,7 +111,7 @@
             <span class="text-gray-500 text-xs">Max Supply</span>
             <p class="text-gray-400 dark:text-gray-300">{ data.info.asset_supply.max_supply === 0 ? "No Limit" : data.info.asset_supply.max_supply }</p>
             <span class="text-gray-500 text-xs">Total Minted</span>
-            <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.mint_blocks_count}/{ data.info.asset_supply.max_supply === 0 ? "∞" : data.info.asset_supply.max_supply }</p>
+            <p class="text-gray-400 dark:text-gray-300">{data.count}/{ data.info.asset_supply.max_supply === 0 ? "∞" : data.info.asset_supply.max_supply }</p>
             <span class="text-gray-500 text-xs">Protocol Version</span>
             <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.version.major_version}.{data.info.asset_supply.version.minor_version}.{data.info.asset_supply.version.patch_version}</p>
             <span class="text-gray-500 text-xs">External URL</span>
