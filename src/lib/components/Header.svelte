@@ -72,7 +72,6 @@
                   <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
                     <a class="justify-between" href="/account">
                       Account
-                      <span class="badge">New</span>
                     </a>
                   </li>
                   <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
