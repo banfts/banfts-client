@@ -83,15 +83,15 @@
             <a class="btn btn-primary btn-block" href="#owned">Scroll To Owned NFTs</a>
           </div>
           <div class="mt-8">
-            <h3 class="font-medium text-gray-400 mb-2">Details</h3>
+            <h3 class="font-medium text-gray-400 mb-2">Details:</h3>
             <span class="text-gray-500 text-xs">Registered</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered ? 'Yes' : 'No'}</p>
             <span class="text-gray-500 text-xs">Registration Date</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered_timestamp ? new Date(Number(data.account.registered_timestamp)) : 'Unregistered'}</p>
             <span class="text-gray-500 text-xs">Total Trades</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.trades.length}-->Coming soon tm</p>
+            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.trades.length}-->Coming Soon™</p>
             <span class="text-gray-500 text-xs">Total Listings</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.listings.length}-->Coming soon tm</p>
+            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.listings.length}-->Coming Soon™</p>
             <span class="text-gray-500 text-xs">Total Assets</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.assets.length}</p>
           </div>
