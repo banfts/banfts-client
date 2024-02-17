@@ -80,10 +80,10 @@
               <a class="btn btn-primary btn-block" href="#supply">Scroll To Supply NFTs</a>
             </div>
             <div class="mt-8">
-              <h3 class="font-medium text-gray-400 mb-2">Details</h3>
-              <span class="text-gray-500 text-xs">Owned NFTs</span>
+              <h3 class="font-medium text-gray-400 mb-2">Details:</h3>
+              <span class="text-gray-500 text-xs">Owned NFTs:</span>
               <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/addresses?address={data.address}">Click Here</a></p>
-              <span class="text-gray-500 text-xs">External Link</span>
+              <span class="text-gray-500 text-xs">External Link:</span>
               <p class="text-gray-400 dark:text-gray-300 truncate">
                 {#if data.info.external_url}
                   <ExternalLink url={data.info.external_url} content="{data.info.external_url}"/>
@@ -91,7 +91,7 @@
                   No external link
                 {/if}
               </p>
-              <span class="text-gray-500 text-xs">Total Supply NFTs</span>
+              <span class="text-gray-500 text-xs">Total Supply NFTs:</span>
               <p class="text-gray-400 dark:text-gray-300 truncate">{data.supplies.length}</p>
             </div>
           </div>
