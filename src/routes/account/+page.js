@@ -11,7 +11,7 @@ export const ssr = false;
 export async function load({ url, fetch }) {
   const address = get(sessionAddress);
 
-  const addressValid = verifyAddress(address, true)
+  const addressValid = verifyAddress(address, true);
   if (!addressValid) {
     return {
       accountAddress: address,
