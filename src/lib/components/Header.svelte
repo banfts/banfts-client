@@ -51,10 +51,10 @@
                 <span class="font-bold text-lg">Trending NFTs</span>
                 <span class="text-info">...</span>
                 <div class="card-actions">
-                  <a class="btn btn-primary btn-block" href="/explorer/minters">All Minters</a>
+                  <a class="btn btn-primary btn-block" href="/explorer/minters">Minters</a>
                 </div>
                 <div class="card-actions">
-                  <a class="btn btn-primary btn-block" href="/market">View Market</a>
+                  <a class="btn btn-primary btn-block" href="/market">Market</a>
                 </div>
               </div>
             </div>
@@ -72,7 +72,6 @@
                   <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
                     <a class="justify-between" href="/account">
                       Account
-                      <span class="badge">New</span>
                     </a>
                   </li>
                   <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
