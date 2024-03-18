@@ -36,6 +36,8 @@ export async function load({ url, fetch }) {
     };
   }
 
+  const minterResp = await (await fetch(`${API_URL}/minters/${resp.asset_supply.minter_address}`)).json();
+
   /*
   {
     success,
@@ -44,7 +46,8 @@ export async function load({ url, fetch }) {
     send_address,
   }
   */
-  return {
-    ...resp,
-  }
+  console.log(resp)
+  console.log()
+  resp.minter_info = minterResp.minters.minter;
+  return resp;
 }
