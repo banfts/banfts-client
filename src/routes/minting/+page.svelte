@@ -176,11 +176,11 @@
 -->
 
 <div class="p-2">
-  <p class="mb-2">Something not going quite right? Check out our <a class="link" href="/help/minting">hopefully helpful help page</a>. We recommend you run this locally for security reasons.</p>
+  <p class="mb-2">Something not going quite right? Check out our <a class="link" href="/help/minting">hopefully helpful help page</a>. We recommend you run this locally for security reasons. Also, generate a new seed just for Banano NFTs.</p>
   {#if mintSuccess}
     <div class="alert alert-success">
       <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-      <span>Success: Set the address's (first index of the seed inputted) rep to {nftRep} during the send and the NFT will mint+send.</span>
+      <span>Success: Set the address's (first index of the seed inputted) rep to {nftRep} during the send and the NFT will mint+send. Please DM Prussia your minting address to have it whitelisted (otherwise it will not be crawled and will not show up on this site).</span>
     </div>
   {/if}
 

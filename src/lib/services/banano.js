@@ -4,6 +4,7 @@ import { BANANO_PREFIX, RPC_URL } from '$lib/config/constants.js';
 
 import bananojs from '@bananocoin/bananojs';
 
+//can be used to get asset rep if mint hash is the public key
 export function getAccount(publicKey) {
   return bananojs.BananoUtil.getAccount(publicKey, BANANO_PREFIX);
 }
