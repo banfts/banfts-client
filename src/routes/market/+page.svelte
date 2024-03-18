@@ -80,7 +80,7 @@
   <div class="mb-2 mx-auto">
     <div class="text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-bold tracking-tight text-gray-400 mb-2">Market</h1>
-      <p class="small text-gray-600">View and Filter Listings.</p>
+      <p class="small text-gray-500">Secondary sales and one-offs. See <a class="link" href="/market/official_sales">official sales</a> to buy directly or buy mass mints.</p>
     </div>
   </div>
 
