@@ -84,8 +84,8 @@
           </div>
           <div class="mt-8">
             <h3 class="font-medium text-gray-400 mb-2">Details</h3>
-            <span class="text-gray-500 text-xs">Registered</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered ? 'Yes' : 'No'}</p>
+            <!--<span class="text-gray-500 text-xs">Registered</span>
+            <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered ? 'Yes' : 'No'}</p>-->
             <span class="text-gray-500 text-xs">Registration Date</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered_timestamp ? new Date(Number(data.account.registered_timestamp)) : 'Unregistered'}</p>
             <span class="text-gray-500 text-xs">Total Trades</span>
@@ -95,6 +95,7 @@
             <span class="text-gray-500 text-xs">Total Assets</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.assets.length}</p>
           </div>
+          <p>*Please note that it may take some time for the crawler to reflect any recent NFT sends/receives</p>
         </div>
 
         <!--
