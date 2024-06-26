@@ -8,4 +8,4 @@ export const BANANO_PREFIX = 'ban_';
 
 export const PER_PAGE = 8;
 
-export const ONE_DAY_MS = 24*60*60*1000;
+export const FOURTEEN_DAY_MS = 24*60*60*1000*14;

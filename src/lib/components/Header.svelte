@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
 
-  import { ONE_DAY_MS } from '$lib/config/constants.js';
+  import { FOURTEEN_DAY_MS } from '$lib/config/constants.js';
   import { sessionAddress, loginTimestamp } from '$lib/services/stores.js';
 
   async function logoutConfirm() {
@@ -65,7 +65,7 @@
                 </svg>
               </label>
               <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - ONE_DAY_MS}
+                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - FOURTEEN_DAY_MS}
                   <li aria-current={$page.url.pathname === '/account' ? 'page' : undefined}>
                     <a class="justify-between" href="/account">
                       Account
@@ -74,7 +74,7 @@
                   <li aria-current={$page.url.pathname === '/settings' ? 'page' : undefined}><a href="/settings">Settings</a></li>
                 {/if}
                 <li aria-current={$page.url.pathname === '/minting' ? 'page' : undefined}><a href="/minting">Minting</a></li>
-                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - ONE_DAY_MS}
+                {#if $sessionAddress.startsWith("ban_") && $loginTimestamp > Date.now() - FOURTEEN_DAY_MS}
                   <li aria-current={$page.url.pathname === '/logout' ? 'page' : undefined}><button on:click={logoutConfirm}>Logout</button></li>
                 {/if}
               </ul>
