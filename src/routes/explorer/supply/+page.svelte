@@ -103,18 +103,18 @@
             <a class="btn btn-primary btn-block" href="/market?supply_hash={data.info.supply_hash}">Find in the Marketplace</a>
           </div>
           <div class="mt-8">
-            <h3 class="font-medium text-gray-400 mb-2">Details</h3>
-            <span class="text-gray-500 text-xs">Metadata Representative</span>
+            <h3 class="font-medium text-gray-400 mb-2">Details:</h3>
+            <span class="text-gray-500 text-xs">Metadata Representative:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.info.asset_supply.metadata_representative}</p>
-            <span class="text-gray-500 text-xs">Issuer</span>
+            <span class="text-gray-500 text-xs">Issuer:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={data.info.asset_supply.minter_address}">{data.info.asset_supply.minter_address}</a></p>
-            <span class="text-gray-500 text-xs">Max Supply</span>
+            <span class="text-gray-500 text-xs">Max Supply:</span>
             <p class="text-gray-400 dark:text-gray-300">{ data.info.asset_supply.max_supply === 0 ? "No Limit" : data.info.asset_supply.max_supply }</p>
-            <span class="text-gray-500 text-xs">Total Minted</span>
+            <span class="text-gray-500 text-xs">Total Minted:</span>
             <p class="text-gray-400 dark:text-gray-300">{data.count}/{ data.info.asset_supply.max_supply === 0 ? "∞" : data.info.asset_supply.max_supply }</p>
-            <span class="text-gray-500 text-xs">Protocol Version</span>
+            <span class="text-gray-500 text-xs">Protocol Version:</span>
             <p class="text-gray-400 dark:text-gray-300">{data.info.asset_supply.version.major_version}.{data.info.asset_supply.version.minor_version}.{data.info.asset_supply.version.patch_version}</p>
-            <span class="text-gray-500 text-xs">External URL</span>
+            <span class="text-gray-500 text-xs">External URL:</span>
             <p class="text-gray-400 dark:text-gray-300">{ data.info.asset_supply.nft_metadata.external_url ? data.info.asset_supply.nft_metadata.external_url : "None" }</p>
           </div>
         </div>
