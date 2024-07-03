@@ -34,7 +34,7 @@
         <h2 class="card-title">{metadata.name}</h2>
         <div class="flex flex-col my-2">
           <div class="flex justify-between">
-            <h3 class="text-sm text-gray-400">Ask Price</h3>
+            <h3 class="text-sm text-gray-400">Ask Price:</h3>
             <p class="text-end dark:text-yellow-200 font-bold">{listing.ask_price} BAN</p>
           </div>
           <div class="flex justify-between">

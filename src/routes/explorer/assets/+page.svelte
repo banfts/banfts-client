@@ -72,11 +72,11 @@
         </div>
 
         <div class="mt-4 lg:row-span-1 lg:mt-0">
-          <h2 class="sr-only">Asset information</h2>
+          <h2 class="sr-only">Asset information:</h2>
           <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">{data.asset_metadata.name}</p>
 
           <div>
-            <h3 class="sr-only">Description</h3>
+            <h3 class="sr-only">Description:</h3>
             <div class="space-y-6">
               <p class="text-base text-gray-400">{data.asset_metadata.description}</p>
             </div>
@@ -86,18 +86,18 @@
             <a class="btn btn-primary btn-block" href="/market/listings?mint_hash={data.mint_hash}">Find in the Marketplace</a>
           </div>
           <div class="mt-8">
-            <h3 class="font-medium text-gray-400 mb-2">Details</h3>
-            <span class="text-gray-500 text-xs">Supply Hash</span>
+            <h3 class="font-medium text-gray-400 mb-2">Details:</h3>
+            <span class="text-gray-500 text-xs">Supply Hash:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/supply?supply_hash={data.asset.supply_hash}">{data.asset.supply_hash}</a></p>
-            <span class="text-gray-500 text-xs">Mint Hash</span>
+            <span class="text-gray-500 text-xs">Mint Hash:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.asset.mint_hash}</p>
-            <span class="text-gray-500 text-xs">Owner</span>
+            <span class="text-gray-500 text-xs">Owner:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/addresses?address={data.asset.owner}">{data.asset.owner}</a></p>
-            <span class="text-gray-500 text-xs">Asset Representative</span>
+            <span class="text-gray-500 text-xs">Asset Representative:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate hover:underline hover:decoration-dotted" title="To send this NFT, send a transaction while your rep is set to this">{data.asset_representative}</p>
-            <span class="text-gray-500 text-xs">Issuer</span>
+            <span class="text-gray-500 text-xs">Issuer:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate"><a class="link" href="/explorer/minters?address={data.asset_metadata.properties.issuer}">{data.asset_metadata.properties.issuer}</a></p>
-            <span class="text-gray-500 text-xs">Lock status</span>
+            <span class="text-gray-500 text-xs">Lock status:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate hover:underline hover:decoration-dotted" title="NFTs are locked when undergoing an atomic swap">{data.asset.locked ? 'Locked' : 'Unlocked'}</p>
           </div>
         </div>

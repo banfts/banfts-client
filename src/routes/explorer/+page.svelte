@@ -75,7 +75,7 @@
 
   <div class="mt-4">
     <div class="max-w-7xl sm:px-4 lg:px-8">
-      <h2 class="text-xl font-bold tracking-tight text-gray-400 mb-4">Featured</h2>
+      <h2 class="text-xl font-bold tracking-tight text-gray-400 mb-4">Featured:</h2>
     </div>
   </div>
   <div class="max-w-full px-4 pb-4 sm:px-6 lg:px-8">
@@ -90,7 +90,7 @@
             <h2 class="card-title">Asset Name</h2>
             <div class="flex flex-col my-2">
               <div class="flex justify-between">
-                <h3 class="text-sm text-gray-400">Ask Price</h3>
+                <h3 class="text-sm text-gray-400">Ask Price:</h3>
                 <p class="text-end dark:text-yellow-200 font-bold">199 BAN</p>
               </div>
               <div class="flex justify-between">
