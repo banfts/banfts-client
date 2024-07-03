@@ -70,7 +70,7 @@
 
         <div class="mt-4 lg:row-span-1 lg:mt-0">
           <h2 class="sr-only">Account Information</h2>
-          <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">Account { $sessionAddress === data.account.address ? "(you)" : "" }</p>
+          <p class="text-3xl tracking-tight text-gray-400 dark:text-gray-300 mb-4">Account { $sessionAddress === data.account.address ? "" :  "" }</p>
 
           <div>
             <h3 class="sr-only">Description</h3>
@@ -83,16 +83,16 @@
             <a class="btn btn-primary btn-block" href="#owned">Scroll To Owned NFTs</a>
           </div>
           <div class="mt-8">
-            <h3 class="font-medium text-gray-400 mb-2">Details</h3>
+            <h3 class="font-medium text-gray-400 mb-2">Details:</h3>
             <!--<span class="text-gray-500 text-xs">Registered</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered ? 'Yes' : 'No'}</p>-->
-            <span class="text-gray-500 text-xs">Registration Date</span>
+            <span class="text-gray-500 text-xs">Registration Date:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.registered_timestamp ? new Date(Number(data.account.registered_timestamp)) : 'Unregistered'}</p>
-            <span class="text-gray-500 text-xs">Total Trades</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.trades.length}-->Coming soon tm</p>
-            <span class="text-gray-500 text-xs">Total Listings</span>
-            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.listings.length}-->Coming soon tm</p>
-            <span class="text-gray-500 text-xs">Total Assets</span>
+            <span class="text-gray-500 text-xs">Total Trades:</span>
+            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.trades.length}-->Coming Soon™</p>
+            <span class="text-gray-500 text-xs">Total Listings:</span>
+            <p class="text-gray-400 dark:text-gray-300 truncate"><!--{data.account.listings.length}-->Coming Soon™</p>
+            <span class="text-gray-500 text-xs">Total Assets:</span>
             <p class="text-gray-400 dark:text-gray-300 truncate">{data.account.assets.length}</p>
           </div>
           <p>*Please note that it may take some time for the crawler to reflect any recent NFT sends/receives</p>
