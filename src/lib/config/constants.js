@@ -1,4 +1,4 @@
-export const API_URL = 'https://api.banfts.com/api/v1';
+export const API_URL = 'https://api.banfts.prussia.dev/api/v1';
 
 export const IPFS_GATEWAY = 'https://ipfs.io/ipfs';
 
