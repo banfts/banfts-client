@@ -2,15 +2,20 @@
   import { goto } from '$app/navigation';
 
   import { validateBananoAddress, validateHexHash } from '$lib/utils/validate.js';
+  import { TLD_MAPPING } from '$lib/config/constants.js';
 
   let searchQuery;
   let filterType;
   let searchError = false;
 
-  function explorerSearch() {
+  async function explorerSearch() {
     //todo, error message is input is valid, or something
     searchQuery = searchQuery.trim();
     if (filterType === "address") {
+      if (searchQuery.includes(".")) {
+        const [name, tld] = searchQuery.split(".");
+        searchQuery = (await (new window.bns.Resolver(new window.bns.banani.RPC("https://kaliumapi.appditto.com/api"), TLD_MAPPING)).resolve(name, tld)).resolved_address;
+      }
       if (validateBananoAddress(searchQuery)) {
         return goto(`/explorer/addresses?address=${searchQuery}`);
       }
@@ -33,6 +38,7 @@
 
 <svelte:head>
   <title>Explorer</title>
+  <script src="/bns-browser.js"></script>
 </svelte:head>
 
 <div class="flex flex-col w-full bg-base-300 rounded-box shadow p-4 my-4">
