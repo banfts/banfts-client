@@ -14,7 +14,9 @@
     if (filterType === "address") {
       if (searchQuery.includes(".")) {
         const [name, tld] = searchQuery.split(".");
-        searchQuery = (await (new window.bns.Resolver(new window.bns.banani.RPC("https://kaliumapi.appditto.com/api"), TLD_MAPPING)).resolve(name, tld)).resolved_address;
+        if (TLD_MAPPING[tld]) {
+          searchQuery = (await (new window.bns.Resolver(new window.bns.banani.RPC("https://kaliumapi.appditto.com/api"), TLD_MAPPING)).resolve(name, tld)).resolved_address;
+        }
       }
       if (validateBananoAddress(searchQuery)) {
         return goto(`/explorer/addresses?address=${searchQuery}`);
